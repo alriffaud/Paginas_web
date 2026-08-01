@@ -1,0 +1,188 @@
+# Satoshi Friends &amp; Fitness — Sitio web
+
+Sitio de una sola página para el box de Barrio Sur, Montevideo.
+HTML estático + Tailwind CSS v4 + GSAP. Sin framework, sin backend, sin base de datos.
+
+---
+
+## Índice
+
+1. [Cómo trabajar con el proyecto](#1-cómo-trabajar-con-el-proyecto)
+2. [Qué editar y dónde](#2-qué-editar-y-dónde)
+3. [Pendientes antes de publicar](#3-pendientes-antes-de-publicar)
+4. [Cómo publicarlo](#4-cómo-publicarlo)
+5. [Decisiones de diseño](#5-decisiones-de-diseño)
+6. [Accesibilidad y rendimiento](#6-accesibilidad-y-rendimiento)
+
+---
+
+## 1. Cómo trabajar con el proyecto
+
+Instalación (una sola vez):
+
+```bash
+npm install
+```
+
+Mientras editás, dejá corriendo el compilador de estilos:
+
+```bash
+npm run dev
+```
+
+Para ver el sitio en el navegador, en otra terminal:
+
+```bash
+npm run serve
+```
+
+Antes de subir a producción, compilá el CSS minificado:
+
+```bash
+npm run build
+```
+
+> **Importante:** Tailwind lee las clases directamente de `index.html`. Cada vez que
+> agregues o cambies una clase en el HTML tenés que volver a compilar (`npm run dev`
+> lo hace solo; `npm run build` para el archivo final). Si un cambio de clase "no se
+> ve", casi siempre es que falta recompilar.
+
+### Estructura
+
+```
+index.html              Todo el contenido de la página
+src/input.css           Fuente de estilos: colores, tipografía, componentes
+assets/css/main.css     CSS compilado (generado — no editar a mano)
+assets/js/main.js       Animaciones, horarios, reseñas, formulario
+assets/img/             Imágenes + guía de reemplazo (ver su README)
+```
+
+---
+
+## 2. Qué editar y dónde
+
+### Teléfono, email y nombre
+
+`assets/js/main.js`, arriba de todo, en el objeto `CONFIG`. Además hay enlaces
+`tel:` y `wa.me` dentro de `index.html` (buscá `59892321900`).
+
+### Horarios
+
+`assets/js/main.js`, constantes `IMPARES`, `PARES` y `HORARIOS`. Cada clase es
+`{ t: "07:00", prog: "standard" }` y `prog` sólo puede ser `standard`, `fit` o `hibrida`.
+La grilla y los filtros se regeneran solos: no hay que tocar el HTML.
+
+### Reseñas
+
+`assets/js/main.js`, constante `RESENAS`. Agregá o quitá objetos del array; el carrusel
+se ajusta solo. Las iniciales del avatar se calculan a partir del nombre.
+
+### Textos de las programaciones
+
+Están escritos directamente en `index.html`, en la sección `PROGRAMACIONES`. El texto
+corto es el que se ve siempre; el largo está dentro de `<div class="prog-more">` y se
+despliega con "Leer más".
+
+### Colores
+
+`src/input.css`, bloque `@theme`. Cambiando `--color-ember*` cambia el acento de todo el
+sitio. Si cambiás el rojo, verificá el contraste en
+[webaim.org/resources/contrastchecker](https://webaim.org/resources/contrastchecker/).
+
+---
+
+## 3. Pendientes antes de publicar
+
+Estos son los datos que no tenía al construir el sitio. Están marcados con `TODO`
+en el código:
+
+| Pendiente | Dónde | Estado actual |
+|---|---|---|
+| **Email real del gimnasio** | `assets/js/main.js` → `CONFIG.email` | Placeholder `hola@satoshifitness.uy` |
+| **Reseñas reales** | `assets/js/main.js` → `RESENAS` | 6 reseñas de ejemplo con nombres ficticios |
+| **Grilla de horarios real** | `assets/js/main.js` → `IMPARES` / `PARES` / `HORARIOS` | Grilla propuesta dentro de las franjas reales (7–13 y 16–22, sábado 9–12) |
+| **Fotos del box** | `index.html` | Fotos de stock de Unsplash — ver `assets/img/README.md` |
+| **Imagen para compartir** | `index.html` → `og:image` | Foto de stock; hace falta una de 1200×630 px |
+| **Dominio** | `index.html` → `<link rel="canonical">` | `https://satoshifitness.uy/` |
+| **Redes sociales** | Footer | Sin enlaces — no me pasaste las cuentas |
+
+Las cifras de la sección de estadísticas (3 programaciones, 10 habilidades físicas,
+6 días, 11 clases por día) salen del material que me diste y de la grilla de horarios;
+no hay números inventados sobre socios ni años de trayectoria. Si querés mostrar esos
+datos, se cambian en `index.html` (atributo `data-count`).
+
+---
+
+## 4. Cómo publicarlo
+
+El sitio es HTML estático: anda en cualquier hosting.
+
+**Netlify / Vercel / Cloudflare Pages (gratis y recomendado):** arrastrá la carpeta del
+proyecto, ya compilada con `npm run build`. Se publica con HTTPS automático.
+
+**Hosting compartido / cPanel:** subí por FTP `index.html` y la carpeta `assets/`
+completa. No hace falta subir `node_modules/`, `src/` ni `package.json`.
+
+---
+
+## 5. Decisiones de diseño
+
+**Referencia visual.** De las tres imágenes que pasaste, la base es la segunda: negro
+profundo, rojo fuego, tipografía condensada, tarjetas de vidrio sobre foto. De la
+primera tomé la barra de contacto superior; de la tercera, la fila de estadísticas.
+
+**Tipografía.** Barlow Condensed para títulos (condensada, atlética, muy legible en
+mayúsculas grandes) y Barlow para texto corrido. Son de la misma familia, así que
+combinan sin esfuerzo.
+
+**Color.** Negro `#08080A` en lugar de negro puro: el negro absoluto produce arrastre
+visual en pantallas OLED. El rojo tiene tres tonos con roles distintos — uno para
+fondos de botón, uno para acentos y uno más claro para texto chico — para que siempre
+haya contraste suficiente.
+
+**Animación.** Todo se anima con `transform` y `opacity` únicamente, que el navegador
+resuelve en la GPU. Nunca se anima el ancho, el alto ni la posición, que obligan a
+recalcular el diseño y provocan tirones en celulares de gama media.
+
+- Entrada del hero en cascada
+- Aparición de secciones al hacer scroll, escalonada entre elementos hermanos
+- Contadores numéricos
+- Parallax suave en las fotos — **sólo en escritorio**
+- Botón que sigue al cursor — **sólo con mouse**
+- Marquee infinito en CSS puro
+
+**Sin JavaScript el sitio sigue funcionando.** GSAP se carga desde un CDN; si falla,
+no queda nada oculto, porque las animaciones nunca esconden contenido desde el CSS.
+La grilla de horarios y las reseñas sí necesitan JS: son datos generados. Si eso te
+preocupa, se pueden pasar a HTML fijo.
+
+---
+
+## 6. Accesibilidad y rendimiento
+
+Verificado sobre el sitio ya construido:
+
+- **Contraste:** 0 fallos WCAG AA en todos los textos de la página, calculado con
+  composición real de transparencias. Los pares principales van de 5,1:1 a 18,2:1.
+- **Zonas táctiles:** mínimo 44 × 44 px. Los enlaces del pie crecen automáticamente en
+  pantallas táctiles y se mantienen compactos con mouse.
+- **Teclado:** foco visible en todo elemento interactivo, enlace "saltar al contenido",
+  y el menú móvil atrapa el foco y cierra con `Escape`.
+- **Lectores de pantalla:** jerarquía de encabezados correcta, íconos SVG con
+  `aria-hidden`, errores de formulario con `role="alert"`, filtros con `aria-pressed`.
+- **`prefers-reduced-motion`:** si el usuario lo activa, se apagan todas las animaciones
+  y todo el contenido queda visible.
+- **Sin scroll horizontal** a 375 px ni en orientación apaisada.
+- **Sin saltos de diseño:** todas las imágenes declaran `width` y `height`; las fuentes
+  usan `display=swap`.
+- **Carga diferida** en todas las imágenes fuera de la primera pantalla y en el mapa.
+
+### Formulario de contacto
+
+Envía por WhatsApp (arma el mensaje y abre el chat) con alternativa por email. No hay
+backend, así que no hay nada que mantener ni que pueda caerse. Valida al salir de cada
+campo, no en cada tecla, y al enviar lleva el foco al primer campo con error.
+
+Si más adelante querés que los mensajes lleguen a una casilla de correo, se conecta a
+[Web3Forms](https://web3forms.com) o [Formspree](https://formspree.io) cambiando sólo la
+función `initForm` en `assets/js/main.js`.

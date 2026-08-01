@@ -1,0 +1,15 @@
+{
+  "name": "satoshi-friends-fitness",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio web de Satoshi Friends & Fitness - Montevideo, Uruguay",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/input.css -o ./assets/css/main.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./assets/css/main.css --minify",
+    "serve": "npx --yes serve . -l 5173"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}

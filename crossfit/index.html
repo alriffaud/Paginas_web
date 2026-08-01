@@ -1,0 +1,1108 @@
+<!doctype html>
+<html lang="es-UY">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#08080A" />
+
+    <title>Satoshi Friends &amp; Fitness | Entrenamiento Híbrido, Running y Funcional en Montevideo</title>
+    <meta
+      name="description"
+      content="Box de entrenamiento funcional en Barrio Sur, Montevideo. Tres programaciones — Standard, Fit e Híbrida — escalables, progresivas y siempre guiadas por coach. Gutiérrez Ruiz 1061."
+    />
+    <link rel="canonical" href="https://satoshifitness.uy/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_UY" />
+    <meta property="og:site_name" content="Satoshi Friends & Fitness" />
+    <meta property="og:title" content="Satoshi Friends & Fitness | Montevideo" />
+    <meta
+      property="og:description"
+      content="Salud, entrenamiento híbrido, running y funcional. Gutiérrez Ruiz 1061, Barrio Sur."
+    />
+    <!-- TODO: reemplazar por una foto real del box (1200x630 px). Ver assets/img/README.md -->
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&h=630&q=80"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+
+    <!-- Fuentes: preconnect + display=swap para evitar FOIT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap"
+    />
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <!-- Datos estructurados: negocio local -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ExerciseGym",
+        "name": "Satoshi Friends & Fitness",
+        "description": "Salud, entrenamiento híbrido, running y funcional.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Gutiérrez Ruiz 1061",
+          "addressLocality": "Montevideo",
+          "addressRegion": "Barrio Sur",
+          "addressCountry": "UY"
+        },
+        "telephone": "+59892321900",
+        "openingHours": ["Mo-Fr 07:00-13:00", "Mo-Fr 16:00-22:00", "Sa 09:00-12:00"]
+      }
+    </script>
+  </head>
+
+  <body class="bg-ink font-body text-cloud antialiased">
+    <a
+      href="#contenido"
+      class="btn btn-primary sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100]"
+      >Saltar al contenido</a
+    >
+
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- ==================================================================
+         HEADER
+         ================================================================== -->
+    <header id="site-header" class="fixed inset-x-0 top-0 z-50">
+      <!-- Barra superior de contacto (oculta en móvil por densidad) -->
+      <div class="hidden border-b border-line/70 bg-ink-soft/90 backdrop-blur-md lg:block">
+        <div class="shell flex h-11 items-center justify-between text-[0.8125rem] text-mist">
+          <div class="flex items-center gap-7">
+            <span class="inline-flex items-center gap-2">
+              <svg class="size-4 text-ember" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Gutiérrez Ruiz 1061 — Barrio Sur, Montevideo
+            </span>
+            <span class="inline-flex items-center gap-2">
+              <svg class="size-4 text-ember" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3 2" />
+              </svg>
+              Lun a Vie 7–13 y 16–22 h
+            </span>
+          </div>
+          <a
+            href="tel:+59892321900"
+            class="inline-flex items-center gap-2 font-semibold text-cloud transition-colors duration-200 hover:text-ember-bright"
+          >
+            <svg class="size-4 text-ember" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z" />
+            </svg>
+            092 321 900
+          </a>
+        </div>
+      </div>
+
+      <!-- Nav principal -->
+      <div id="nav-bar" class="border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-300">
+        <nav class="shell flex h-[72px] items-center justify-between" aria-label="Navegación principal">
+          <a href="#inicio" class="group flex min-h-11 items-center gap-3" aria-label="Satoshi Friends and Fitness — inicio">
+            <span class="grid size-10 flex-none place-items-center bg-ember-deep">
+              <svg class="size-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 9v6M20 9v6M7 6v12M17 6v12M7 12h10" />
+              </svg>
+            </span>
+            <span class="leading-none">
+              <span class="block font-display text-xl font-extrabold tracking-tight">SATOSHI</span>
+              <span class="block text-[0.625rem] font-semibold uppercase tracking-[0.28em] text-mist"
+                >Friends &amp; Fitness</span
+              >
+            </span>
+          </a>
+
+          <ul class="hidden items-center gap-8 lg:flex">
+            <li><a class="nav-link" href="#inicio">Inicio</a></li>
+            <li><a class="nav-link" href="#nosotros">Nosotros</a></li>
+            <li><a class="nav-link" href="#programas">Programaciones</a></li>
+            <li><a class="nav-link" href="#horarios">Horarios</a></li>
+            <li><a class="nav-link" href="#resenas">Reseñas</a></li>
+            <li><a class="nav-link" href="#contacto">Contacto</a></li>
+          </ul>
+
+          <div class="flex items-center gap-3">
+            <a href="#contacto" class="btn btn-primary hidden sm:inline-flex">Agendá tu clase</a>
+            <button
+              id="menu-toggle"
+              type="button"
+              class="grid size-11 place-items-center border border-line text-cloud transition-colors duration-200 hover:border-ember lg:hidden"
+              aria-label="Abrir menú"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+            >
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Menú móvil -->
+    <div
+      id="mobile-menu"
+      class="fixed inset-0 z-[55] hidden bg-ink/98 backdrop-blur-xl lg:hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menú de navegación"
+    >
+      <div class="flex h-[72px] items-center justify-between px-5">
+        <span class="font-display text-xl font-extrabold">SATOSHI</span>
+        <button
+          id="menu-close"
+          type="button"
+          class="grid size-11 place-items-center border border-line text-cloud transition-colors duration-200 hover:border-ember"
+          aria-label="Cerrar menú"
+        >
+          <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-1 px-5 pt-6" aria-label="Navegación móvil">
+        <a class="m-link" href="#inicio">Inicio</a>
+        <a class="m-link" href="#nosotros">Nosotros</a>
+        <a class="m-link" href="#programas">Programaciones</a>
+        <a class="m-link" href="#horarios">Horarios</a>
+        <a class="m-link" href="#resenas">Reseñas</a>
+        <a class="m-link" href="#contacto">Contacto</a>
+        <a href="#contacto" class="btn btn-primary mt-6 w-full">Agendá tu clase</a>
+        <a href="tel:+59892321900" class="btn btn-ghost mt-3 w-full">092 321 900</a>
+      </nav>
+    </div>
+
+    <main id="contenido">
+      <!-- ================================================================
+           HERO
+           ================================================================ -->
+      <section id="inicio" class="relative flex min-h-dvh items-center overflow-hidden pb-16 pt-[104px] lg:pt-[132px]">
+        <!-- Fondo -->
+        <div class="absolute inset-0 -z-10">
+          <div class="media absolute inset-0">
+            <img
+              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2000&q=80"
+              alt=""
+              aria-hidden="true"
+              fetchpriority="high"
+              width="2000"
+              height="1333"
+              data-parallax="0.16"
+              class="scale-110 opacity-45"
+            />
+          </div>
+          <div class="absolute inset-0 bg-ink/45"></div>
+          <div class="absolute inset-0 ink-fade-b"></div>
+          <div class="absolute inset-0 hidden ink-fade-r lg:block"></div>
+          <!-- Halo ambiental -->
+          <div
+            class="drift absolute -left-40 top-1/4 size-[42rem] rounded-full bg-ember/16 blur-[130px]"
+            aria-hidden="true"
+          ></div>
+        </div>
+
+        <!-- Marca gigante de fondo -->
+        <span
+          class="pointer-events-none absolute -right-10 top-[58%] -z-10 hidden -translate-y-1/2 select-none font-display text-[20vw] font-black leading-none title-outline xl:block"
+          aria-hidden="true"
+          >SATOSHI</span
+        >
+
+        <div class="shell relative w-full">
+          <div class="max-w-3xl">
+            <p class="eyebrow" data-hero="1">Barrio Sur — Montevideo</p>
+
+            <h1 class="title-xl mt-6 font-black">
+              <span class="block overflow-hidden"><span class="block" data-hero="2">Entrená</span></span>
+              <span class="block overflow-hidden"
+                ><span class="block text-ember" data-hero="3">con propósito</span></span
+              >
+            </h1>
+
+            <p class="mt-5 max-w-xl text-base text-mist sm:mt-7 sm:text-lg" data-hero="4">
+              Salud, entrenamiento híbrido, running y funcional. Tres programaciones escalables y
+              progresivas, siempre guiadas por un coach, para que desafíes tus límites de forma
+              segura.
+            </p>
+
+            <div class="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center" data-hero="5">
+              <a href="#contacto" class="btn btn-primary w-full sm:w-auto">
+                Reservá tu clase de prueba
+                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
+              <a href="#programas" class="btn btn-ghost w-full sm:w-auto">Ver programaciones</a>
+            </div>
+
+            <!-- Tarjetas de dato (referencia 2) -->
+            <div class="mt-10 grid max-w-lg grid-cols-2 gap-3 sm:mt-14" data-hero="6">
+              <div class="glass rounded-sm p-5">
+                <p class="font-display text-4xl font-black text-ember-bright tabular">03</p>
+                <p class="mt-1.5 text-sm leading-snug text-mist">
+                  Programaciones distintas: Standard, Fit e Híbrida.
+                </p>
+              </div>
+              <div class="glass rounded-sm p-5">
+                <p class="font-display text-4xl font-black text-ember-bright tabular">10</p>
+                <p class="mt-1.5 text-sm leading-snug text-mist">
+                  Habilidades físicas básicas desarrolladas de forma equilibrada.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="#nosotros"
+          class="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-[0.625rem] font-semibold uppercase tracking-[0.28em] text-ash transition-colors duration-200 hover:text-ember-bright lg:flex"
+          aria-label="Bajar a la sección Nosotros"
+        >
+          Scroll
+          <span class="block h-10 w-px bg-gradient-to-b from-ember to-transparent"></span>
+        </a>
+      </section>
+
+      <!-- ================================================================
+           MARQUEE
+           ================================================================ -->
+      <div class="marquee overflow-hidden border-y border-line bg-ink-soft py-5" aria-hidden="true">
+        <div class="marquee-track">
+          <div class="flex shrink-0 items-center">
+            <span class="mk">Levantamiento olímpico</span><span class="mk-dot"></span>
+            <span class="mk">Gimnásticos</span><span class="mk-dot"></span>
+            <span class="mk">Running</span><span class="mk-dot"></span>
+            <span class="mk">Movilidad</span><span class="mk-dot"></span>
+            <span class="mk">Acondicionamiento metabólico</span><span class="mk-dot"></span>
+            <span class="mk">Core</span><span class="mk-dot"></span>
+            <span class="mk">Fuerza</span><span class="mk-dot"></span>
+          </div>
+          <div class="flex shrink-0 items-center">
+            <span class="mk">Levantamiento olímpico</span><span class="mk-dot"></span>
+            <span class="mk">Gimnásticos</span><span class="mk-dot"></span>
+            <span class="mk">Running</span><span class="mk-dot"></span>
+            <span class="mk">Movilidad</span><span class="mk-dot"></span>
+            <span class="mk">Acondicionamiento metabólico</span><span class="mk-dot"></span>
+            <span class="mk">Core</span><span class="mk-dot"></span>
+            <span class="mk">Fuerza</span><span class="mk-dot"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================
+           NOSOTROS
+           ================================================================ -->
+      <section id="nosotros" class="relative py-24 lg:py-32">
+        <div class="shell grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+          <!-- Imagen -->
+          <div class="relative order-2 lg:order-1" data-reveal="left">
+            <div class="media aspect-4/5 rounded-sm">
+              <img
+                src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80"
+                alt="Atletas entrenando en el box de Satoshi Friends & Fitness"
+                loading="lazy"
+                width="1200"
+                height="1500"
+                data-parallax="0.09"
+                class="scale-110"
+              />
+            </div>
+            <!-- Marco de acento -->
+            <div
+              class="pointer-events-none absolute -bottom-5 -right-5 hidden h-2/3 w-2/3 border-2 border-ember/70 sm:block"
+              aria-hidden="true"
+            ></div>
+            <div class="glass absolute -bottom-8 left-4 max-w-[15rem] rounded-sm p-5 sm:left-8">
+              <p class="font-display text-3xl font-black leading-none text-cloud">100%</p>
+              <p class="mt-1.5 text-sm leading-snug text-mist">
+                Escalable y progresivo. Cualquier nivel, siempre con coach.
+              </p>
+            </div>
+          </div>
+
+          <!-- Texto -->
+          <div class="order-1 lg:order-2" data-reveal="right">
+            <p class="eyebrow">Quiénes somos</p>
+            <h2 class="title-lg mt-5 font-black">
+              Un box donde<br /><span class="text-ember">nadie entrena solo</span>
+            </h2>
+            <p class="mt-6 text-lg text-mist">
+              Somos Satoshi Friends &amp; Fitness: salud, entrenamiento híbrido, running y
+              funcional en pleno Barrio Sur. Cada sesión está diseñada, escalada y acompañada para
+              que progreses sin ponerte en riesgo.
+            </p>
+            <p class="mt-4 text-mist">
+              Le damos una importancia vital al desarrollo equilibrado de las diez habilidades
+              físicas básicas y a que la técnica esté siempre por delante de la carga. Elegís la
+              programación; nosotros te guiamos el resto del camino.
+            </p>
+
+            <ul class="mt-10 grid gap-x-8 gap-y-7 sm:grid-cols-2">
+              <li class="flex gap-4">
+                <span class="grid size-11 flex-none place-items-center rounded-sm bg-ember/12 text-ember-bright">
+                  <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+                    <path d="M4 9v6M20 9v6M7 6v12M17 6v12M7 12h10" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="text-lg font-bold tracking-normal">Fuerza estructural</h3>
+                  <p class="mt-1 text-sm text-mist">Squats, deadlifts y trabajo de base bien construido.</p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <span class="grid size-11 flex-none place-items-center rounded-sm bg-ember/12 text-ember-bright">
+                  <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="text-lg font-bold tracking-normal">Rangos de movimiento</h3>
+                  <p class="mt-1 text-sm text-mist">Movilidad y ROM como parte del entrenamiento, no como extra.</p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <span class="grid size-11 flex-none place-items-center rounded-sm bg-ember/12 text-ember-bright">
+                  <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20.8 5.6a5.2 5.2 0 0 0-7.4 0L12 7l-1.4-1.4a5.2 5.2 0 1 0-7.4 7.4L12 21.4l8.8-8.4a5.2 5.2 0 0 0 0-7.4Z" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="text-lg font-bold tracking-normal">Salud primero</h3>
+                  <p class="mt-1 text-sm text-mist">Movimiento consciente y técnica antes que intensidad.</p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <span class="grid size-11 flex-none place-items-center rounded-sm bg-ember/12 text-ember-bright">
+                  <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9.5" cy="7" r="3.5" />
+                    <path d="M22 20v-2a4 4 0 0 0-3-3.9M16 3.6a4 4 0 0 1 0 6.8" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="text-lg font-bold tracking-normal">Comunidad</h3>
+                  <p class="mt-1 text-sm text-mist">Friends &amp; Fitness: entrenás acompañado, siempre.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           STATS
+           ================================================================ -->
+      <section class="border-y border-line bg-ink-soft">
+        <div class="shell grid grid-cols-2 divide-line lg:grid-cols-4 lg:divide-x">
+          <div class="border-b border-line px-2 py-10 text-center lg:border-b-0" data-reveal="up">
+            <p class="font-display text-5xl font-black text-cloud tabular lg:text-6xl">
+              <span data-count="3">0</span>
+            </p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-mist">Programaciones</p>
+          </div>
+          <div class="border-b border-line px-2 py-10 text-center lg:border-b-0" data-reveal="up">
+            <p class="font-display text-5xl font-black text-cloud tabular lg:text-6xl">
+              <span data-count="10">0</span>
+            </p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-mist">Habilidades físicas</p>
+          </div>
+          <div class="px-2 py-10 text-center" data-reveal="up">
+            <p class="font-display text-5xl font-black text-cloud tabular lg:text-6xl">
+              <span data-count="6">0</span>
+            </p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-mist">Días por semana</p>
+          </div>
+          <div class="px-2 py-10 text-center" data-reveal="up">
+            <p class="font-display text-5xl font-black text-cloud tabular lg:text-6xl">
+              <span data-count="11">0</span>
+            </p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-mist">Clases por día</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PROGRAMACIONES
+           ================================================================ -->
+      <section id="programas" class="relative py-24 lg:py-32">
+        <div class="shell">
+          <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div class="max-w-2xl" data-reveal="up">
+              <p class="eyebrow">Qué vas a entrenar</p>
+              <h2 class="title-lg mt-5 font-black">
+                Tres caminos.<br /><span class="text-ember">Un mismo estándar.</span>
+              </h2>
+            </div>
+            <p class="max-w-md text-mist" data-reveal="up">
+              Todas nuestras planificaciones son escalables y progresivas. Elegí la que se ajuste a
+              tu objetivo de hoy: podés combinarlas o cambiar cuando quieras.
+            </p>
+          </div>
+
+          <div class="mt-16 grid gap-5 lg:grid-cols-3">
+            <!-- STANDARD -->
+            <article class="prog card group relative flex flex-col overflow-hidden" data-reveal="up">
+              <div class="media aspect-16/10">
+                <img
+                  src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1000&q=80"
+                  alt="Atleta realizando levantamiento olímpico con barra"
+                  loading="lazy"
+                  width="1000"
+                  height="625"
+                  class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/35 to-transparent"></div>
+                <span class="absolute left-5 top-5 bg-ember-deep px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-white"
+                  >Nuestra esencia</span
+                >
+              </div>
+
+              <div class="flex flex-1 flex-col p-7">
+                <h3 class="title-md font-black">Standard</h3>
+                <p class="mt-3 text-mist">
+                  Alta intensidad, variada y funcional. Tu dosis diaria de superación, con barras
+                  olímpicas y movimientos gimnásticos como protagonistas.
+                </p>
+
+                <ul class="mt-6 space-y-2.5">
+                  <li class="prog-li">Levantamiento olímpico (snatch, clean &amp; jerk)</li>
+                  <li class="prog-li">Gimnásticos (paro de manos, pull up, muscle up)</li>
+                  <li class="prog-li">Fuerza (squats, deadlifts)</li>
+                  <li class="prog-li">Acondicionamiento metabólico</li>
+                </ul>
+
+                <div class="prog-more" hidden>
+                  <div class="mt-6 border-t border-line pt-6 text-mist">
+                    <p>
+                      ¿Buscás el desafío clásico de Satoshi? La planificación Standard es exactamente
+                      lo que conocés, amás y te desafía cada día. Para respetar los derechos de marca
+                      y seguir creciendo, decidimos renombrar nuestra programación clásica.
+                    </p>
+                    <p class="mt-4">
+                      El objetivo es ganar fuerza estructural máxima, mejorar tu equilibrio,
+                      estabilidad y rangos de movimiento (ROM). Le damos una importancia vital al
+                      desarrollo equilibrado de las diez habilidades físicas básicas: resistencia,
+                      resistencia muscular, fuerza, flexibilidad, potencia, velocidad, coordinación,
+                      agilidad, equilibrio, cardiovascular/respiratoria y precisión.
+                    </p>
+                    <p class="mt-4">
+                      Como todas nuestras planificaciones, es escalable y progresiva. Siempre guiada
+                      por el coach para que desafíes tus límites de forma segura.
+                    </p>
+                  </div>
+                </div>
+
+                <button type="button" class="prog-toggle mt-auto pt-7" aria-expanded="false">
+                  <span data-label-open="Leer más" data-label-close="Leer menos">Leer más</span>
+                  <svg class="size-4 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+              </div>
+            </article>
+
+            <!-- FIT -->
+            <article class="prog card group relative flex flex-col overflow-hidden" data-reveal="up">
+              <div class="media aspect-16/10">
+                <img
+                  src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1000&q=80"
+                  alt="Entrenamiento funcional en circuito por estaciones"
+                  loading="lazy"
+                  width="1000"
+                  height="625"
+                  class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/35 to-transparent"></div>
+                <span class="absolute left-5 top-5 bg-surface-2/90 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-cloud backdrop-blur"
+                  >Movilidad y salud</span
+                >
+              </div>
+
+              <div class="flex flex-1 flex-col p-7">
+                <h3 class="title-md font-black">Fit</h3>
+                <p class="mt-3 text-mist">
+                  Movimiento consciente, técnica primero. Un entrenamiento que te hace sentir
+                  fuerte, ágil y, sobre todo, saludable.
+                </p>
+
+                <ul class="mt-6 space-y-2.5">
+                  <li class="prog-li">Circuitos por estaciones</li>
+                  <li class="prog-li">Trabajo de core y estabilización</li>
+                  <li class="prog-li">Movilidad general y ROM</li>
+                  <li class="prog-li">Sin barras olímpicas ni jaulas</li>
+                </ul>
+
+                <div class="prog-more" hidden>
+                  <div class="mt-6 border-t border-line pt-6 text-mist">
+                    <p>
+                      La planificación Fit está diseñada para cuidar tu cuerpo mientras lo
+                      fortalecés. Nos enfocamos en el movimiento consciente, priorizando la técnica
+                      y la salud general de tu cuerpo.
+                    </p>
+                    <p class="mt-4">
+                      Siempre trabajamos en formato de circuitos por estaciones. Esto nos permite
+                      individualizar tu esfuerzo y asegurar que cada movimiento cuente. El objetivo
+                      principal es ganar fuerza estructural, mejorar tu equilibrio y estabilización
+                      y, sobre todo, aumentar tus rangos de movimiento con una movilidad general del
+                      cuerpo.
+                    </p>
+                    <p class="mt-4">
+                      Le damos una importancia vital al fortalecimiento de tu zona media, ya que un
+                      core fuerte es tu mejor protección. Escalable para todos los niveles y siempre
+                      guiada por nuestros coaches para que entrenes seguro y feliz.
+                    </p>
+                  </div>
+                </div>
+
+                <button type="button" class="prog-toggle mt-auto pt-7" aria-expanded="false">
+                  <span data-label-open="Leer más" data-label-close="Leer menos">Leer más</span>
+                  <svg class="size-4 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+              </div>
+            </article>
+
+            <!-- HÍBRIDA -->
+            <article class="prog card group relative flex flex-col overflow-hidden" data-reveal="up">
+              <div class="media aspect-16/10">
+                <img
+                  src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=1000&q=80"
+                  alt="Corredor entrenando resistencia al aire libre"
+                  loading="lazy"
+                  width="1000"
+                  height="625"
+                  class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/35 to-transparent"></div>
+                <span class="absolute left-5 top-5 bg-surface-2/90 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-cloud backdrop-blur"
+                  >Nueva</span
+                >
+              </div>
+
+              <div class="flex flex-1 flex-col p-7">
+                <h3 class="title-md font-black">Híbrida</h3>
+                <p class="mt-3 text-mist">
+                  Para quienes quieren ser máquinas de resistencia. Trabajo continuo, cargas
+                  moderadas y un motor que nunca se detiene.
+                </p>
+
+                <ul class="mt-6 space-y-2.5">
+                  <li class="prog-li">Funcional básico + running</li>
+                  <li class="prog-li">Resistencia muscular de acero</li>
+                  <li class="prog-li">Mejora del cardio</li>
+                  <li class="prog-li">Oxidación de lípidos</li>
+                </ul>
+
+                <div class="prog-more" hidden>
+                  <div class="mt-6 border-t border-line pt-6 text-mist">
+                    <p>
+                      ¿Querés quemar grasa y mejorar tu cardio? La Programación Híbrida está diseñada
+                      para quienes quieren ser máquinas de resistencia. Nos alejamos de la
+                      complejidad técnica excesiva para enfocarnos en el trabajo continuo y la
+                      eficiencia.
+                    </p>
+                    <p class="mt-4">
+                      Combinamos ejercicios funcionales básicos con movimientos monoestructurados
+                      como correr. El objetivo es desarrollar una resistencia muscular de acero,
+                      mejorar el cardio y potenciar la oxidación de lípidos.
+                    </p>
+                    <p class="mt-4">
+                      Es ideal si buscás bajar de peso o si simplemente querés sentir que tu corazón
+                      y tus pulmones no tienen techo. Acá la intensidad se mide por el volumen y el
+                      trabajo constante: usamos cargas moderadas a livianas para que el motor nunca
+                      se detenga.
+                    </p>
+                  </div>
+                </div>
+
+                <button type="button" class="prog-toggle mt-auto pt-7" aria-expanded="false">
+                  <span data-label-open="Leer más" data-label-close="Leer menos">Leer más</span>
+                  <svg class="size-4 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           HORARIOS
+           ================================================================ -->
+      <section id="horarios" class="relative overflow-hidden border-y border-line bg-ink-soft py-24 lg:py-32">
+        <div
+          class="pointer-events-none absolute -right-40 top-0 size-[36rem] rounded-full bg-ember/8 blur-[140px]"
+          aria-hidden="true"
+        ></div>
+
+        <div class="shell relative">
+          <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div class="max-w-2xl" data-reveal="up">
+              <p class="eyebrow">Grilla semanal</p>
+              <h2 class="title-lg mt-5 font-black">Elegí tu <span class="text-ember">horario</span></h2>
+              <p class="mt-6 text-mist">
+                Abrimos de lunes a viernes de 7 a 13 y de 16 a 22 h, y los sábados por la mañana.
+                Filtrá por programación para ver sólo las clases que te interesan.
+              </p>
+            </div>
+
+            <!-- Filtros -->
+            <div class="flex flex-wrap gap-2.5" role="group" aria-label="Filtrar horarios por programación" data-reveal="up">
+              <button type="button" class="chip" data-filter="all" aria-pressed="true">Todas</button>
+              <button type="button" class="chip" data-filter="standard" aria-pressed="false">Standard</button>
+              <button type="button" class="chip" data-filter="fit" aria-pressed="false">Fit</button>
+              <button type="button" class="chip" data-filter="hibrida" aria-pressed="false">Híbrida</button>
+            </div>
+          </div>
+
+          <!-- Grilla generada desde assets/js/main.js -->
+          <div
+            id="schedule-grid"
+            class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
+            aria-live="polite"
+          ></div>
+
+          <p class="mt-10 text-sm text-ash">
+            Los horarios pueden variar en feriados. Confirmá tu cupo por WhatsApp antes de venir.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           GALERÍA
+           ================================================================ -->
+      <section class="py-24 lg:py-32">
+        <div class="shell">
+          <div class="max-w-2xl" data-reveal="up">
+            <p class="eyebrow">El box</p>
+            <h2 class="title-lg mt-5 font-black">Así se <span class="text-ember">entrena acá</span></h2>
+          </div>
+
+          <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
+            <figure class="media aspect-square rounded-sm sm:col-span-2 sm:row-span-2 sm:aspect-auto sm:min-h-[26rem]" data-reveal="up">
+              <img
+                src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80"
+                alt="Atleta trabajando con cuerda de batalla en el box"
+                loading="lazy"
+                width="1200"
+                height="1200"
+                data-parallax="0.07"
+                class="scale-110"
+              />
+            </figure>
+            <figure class="media aspect-4/3 rounded-sm" data-reveal="up">
+              <img
+                src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=800&q=80"
+                alt="Discos y barras olímpicas del box"
+                loading="lazy"
+                width="800"
+                height="600"
+              />
+            </figure>
+            <figure class="media aspect-4/3 rounded-sm" data-reveal="up">
+              <img
+                src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?auto=format&fit=crop&w=800&q=80"
+                alt="Clase grupal de entrenamiento funcional"
+                loading="lazy"
+                width="800"
+                height="600"
+              />
+            </figure>
+            <figure class="media aspect-4/3 rounded-sm" data-reveal="up">
+              <img
+                src="https://images.unsplash.com/photo-1517344884509-a0c97ec11bcc?auto=format&fit=crop&w=800&q=80"
+                alt="Kettlebells listas para la clase"
+                loading="lazy"
+                width="800"
+                height="600"
+              />
+            </figure>
+            <figure class="media aspect-4/3 rounded-sm" data-reveal="up">
+              <img
+                src="https://images.unsplash.com/photo-1434682881908-b43d0467b798?auto=format&fit=crop&w=800&q=80"
+                alt="Salida de running del grupo"
+                loading="lazy"
+                width="800"
+                height="600"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           RESEÑAS
+           ================================================================ -->
+      <section id="resenas" class="relative overflow-hidden border-y border-line bg-ink-soft py-24 lg:py-32">
+        <div class="shell">
+          <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div class="max-w-2xl" data-reveal="up">
+              <p class="eyebrow">La comunidad</p>
+              <h2 class="title-lg mt-5 font-black">Lo que dicen<br /><span class="text-ember">nuestros socios</span></h2>
+            </div>
+
+            <div class="flex items-center gap-3" data-reveal="up">
+              <button
+                type="button"
+                id="rev-prev"
+                class="grid size-12 place-items-center rounded-sm border border-line text-cloud transition-colors duration-200 hover:border-ember hover:text-ember-bright"
+                aria-label="Reseñas anteriores"
+              >
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                  <path d="M19 12H5M11 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                id="rev-next"
+                class="grid size-12 place-items-center rounded-sm border border-line text-cloud transition-colors duration-200 hover:border-ember hover:text-ember-bright"
+                aria-label="Reseñas siguientes"
+              >
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Carril con scroll-snap: nativo, táctil y accesible por teclado -->
+          <div
+            id="rev-track"
+            class="no-scrollbar mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2"
+            tabindex="0"
+            role="region"
+            aria-label="Reseñas de socios, desplazable horizontalmente"
+          ></div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           CONTACTO
+           ================================================================ -->
+      <section id="contacto" class="py-24 lg:py-32">
+        <div class="shell">
+          <div class="grid gap-14 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
+            <!-- Columna info -->
+            <div data-reveal="left">
+              <p class="eyebrow">Sumate</p>
+              <h2 class="title-lg mt-5 font-black">
+                Tu primera clase<br /><span class="text-ember">te la invitamos</span>
+              </h2>
+              <p class="mt-6 text-mist">
+                Escribinos y coordinamos el día y la programación que mejor te venga. Te contamos
+                todo lo que necesitás saber antes de entrar al box.
+              </p>
+
+              <ul class="mt-10 space-y-5">
+                <li>
+                  <a href="https://maps.google.com/?q=Gutierrez+Ruiz+1061,+Montevideo,+Uruguay" target="_blank" rel="noopener noreferrer" class="info-row">
+                    <span class="info-ico">
+                      <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                    </span>
+                    <span>
+                      <span class="info-k">Dirección</span>
+                      <span class="info-v">Gutiérrez Ruiz 1061 — Barrio Sur, Montevideo</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+59892321900" class="info-row">
+                    <span class="info-ico">
+                      <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+                        <path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z" />
+                      </svg>
+                    </span>
+                    <span>
+                      <span class="info-k">Teléfono / WhatsApp</span>
+                      <span class="info-v tabular">092 321 900</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <div class="info-row">
+                    <span class="info-ico">
+                      <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 7v5l3 2" />
+                      </svg>
+                    </span>
+                    <span>
+                      <span class="info-k">Horario de atención</span>
+                      <span class="info-v">Lunes a viernes de 7 a 13 y de 16 a 22 h<br />Sábados de 9 a 12 h</span>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="media mt-10 aspect-16/10 rounded-sm border border-line">
+                <iframe
+                  src="https://www.google.com/maps?q=Gutierrez%20Ruiz%201061,%20Montevideo,%20Uruguay&output=embed"
+                  title="Mapa: Gutiérrez Ruiz 1061, Montevideo"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  class="size-full border-0 grayscale-[0.5] contrast-[1.1]"
+                ></iframe>
+              </div>
+            </div>
+
+            <!-- Columna formulario -->
+            <div data-reveal="right">
+              <form id="contact-form" class="card p-7 sm:p-10" novalidate>
+                <h3 class="title-md font-black">Escribinos</h3>
+                <p class="mt-2.5 text-sm text-mist">
+                  Completá el formulario y lo enviás por WhatsApp en un toque. Los campos con
+                  <span class="text-ember-bright">*</span> son obligatorios.
+                </p>
+
+                <div class="mt-8 grid gap-5 sm:grid-cols-2">
+                  <div class="sm:col-span-2">
+                    <label class="field-label" for="f-nombre">Nombre y apellido <span class="text-ember-bright">*</span></label>
+                    <input
+                      class="field"
+                      id="f-nombre"
+                      name="nombre"
+                      type="text"
+                      autocomplete="name"
+                      placeholder="Ana Rodríguez"
+                      required
+                      aria-describedby="e-nombre"
+                    />
+                    <p class="field-error" id="e-nombre" role="alert"></p>
+                  </div>
+
+                  <div>
+                    <label class="field-label" for="f-tel">WhatsApp <span class="text-ember-bright">*</span></label>
+                    <input
+                      class="field tabular"
+                      id="f-tel"
+                      name="telefono"
+                      type="tel"
+                      inputmode="tel"
+                      autocomplete="tel"
+                      placeholder="09X XXX XXX"
+                      required
+                      aria-describedby="e-tel"
+                    />
+                    <p class="field-error" id="e-tel" role="alert"></p>
+                  </div>
+
+                  <div>
+                    <label class="field-label" for="f-email">Email</label>
+                    <input
+                      class="field"
+                      id="f-email"
+                      name="email"
+                      type="email"
+                      inputmode="email"
+                      autocomplete="email"
+                      placeholder="ana@correo.com"
+                      aria-describedby="e-email"
+                    />
+                    <p class="field-error" id="e-email" role="alert"></p>
+                  </div>
+
+                  <div class="sm:col-span-2">
+                    <label class="field-label" for="f-prog">Programación de interés</label>
+                    <select class="field" id="f-prog" name="programa">
+                      <option value="Todavía no sé">Todavía no sé — quiero que me asesoren</option>
+                      <option value="Standard">Standard — alta intensidad y olímpico</option>
+                      <option value="Fit">Fit — movilidad, salud y control</option>
+                      <option value="Híbrida">Híbrida — resistencia y running</option>
+                    </select>
+                  </div>
+
+                  <div class="sm:col-span-2">
+                    <label class="field-label" for="f-msg">Mensaje</label>
+                    <textarea
+                      class="field resize-y"
+                      id="f-msg"
+                      name="mensaje"
+                      rows="4"
+                      placeholder="Contanos tu experiencia previa, tus objetivos o el horario que te queda cómodo."
+                    ></textarea>
+                    <p class="mt-2 text-xs text-ash">Opcional, pero nos ayuda a responderte mejor.</p>
+                  </div>
+
+                  <div class="sm:col-span-2">
+                    <label class="flex cursor-pointer items-start gap-3 py-1">
+                      <input
+                        type="checkbox"
+                        id="f-ok"
+                        name="consentimiento"
+                        class="mt-0.5 size-6 flex-none cursor-pointer accent-[#D22E1E]"
+                        required
+                        aria-describedby="e-ok"
+                      />
+                      <span class="text-sm text-mist">
+                        Acepto que Satoshi Friends &amp; Fitness me contacte por WhatsApp o email
+                        para responder esta consulta. <span class="text-ember-bright">*</span>
+                      </span>
+                    </label>
+                    <p class="field-error" id="e-ok" role="alert"></p>
+                  </div>
+                </div>
+
+                <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <button type="submit" class="btn btn-primary w-full sm:w-auto">
+                    <svg class="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.42 1.3-1.95 1.34-.5.04-.96.22-3.23-.67-2.72-1.07-4.44-3.85-4.57-4.03-.13-.18-1.09-1.45-1.09-2.77s.69-1.96.94-2.23c.24-.27.53-.34.71-.34s.35 0 .5.01c.16.01.38-.06.59.45.22.53.74 1.85.8 1.98.07.13.11.29.02.47-.09.18-.13.29-.27.44-.13.16-.28.35-.4.47-.13.13-.27.28-.12.54.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.59-.13.24.09 1.55.73 1.81.86.27.13.44.2.51.31.06.11.06.64-.18 1.32Z" />
+                    </svg>
+                    Enviar por WhatsApp
+                  </button>
+                  <button type="button" id="send-email" class="btn btn-ghost w-full sm:w-auto">
+                    Prefiero por email
+                  </button>
+                </div>
+
+                <p
+                  id="form-status"
+                  class="mt-5 hidden rounded-sm border border-line bg-ink-soft px-4 py-3 text-sm"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           CTA FINAL
+           ================================================================ -->
+      <section class="relative overflow-hidden border-t border-line">
+        <div class="media absolute inset-0 -z-10">
+          <img
+            src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=2000&q=80"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            width="2000"
+            height="1333"
+            data-parallax="0.12"
+            class="scale-110 opacity-30"
+          />
+          <div class="absolute inset-0 bg-ink/70"></div>
+        </div>
+
+        <div class="shell py-24 text-center lg:py-32" data-reveal="up">
+          <h2 class="title-lg mx-auto max-w-4xl font-black">
+            El único entrenamiento malo<br /><span class="text-ember">es el que no hiciste</span>
+          </h2>
+          <p class="mx-auto mt-6 max-w-xl text-lg text-mist">
+            Vení a probar una clase. Te asignamos coach, te escalamos el trabajo y arrancás hoy.
+          </p>
+          <div class="mt-9 flex flex-wrap justify-center gap-3">
+            <a href="#contacto" class="btn btn-primary">Reservá tu clase de prueba</a>
+            <a href="tel:+59892321900" class="btn btn-ghost">Llamar al 092 321 900</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==================================================================
+         FOOTER
+         ================================================================== -->
+    <footer class="border-t border-line bg-ink-soft">
+      <div class="shell grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="grid size-10 flex-none place-items-center bg-ember-deep">
+              <svg class="size-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 9v6M20 9v6M7 6v12M17 6v12M7 12h10" />
+              </svg>
+            </span>
+            <span class="leading-none">
+              <span class="block font-display text-xl font-extrabold">SATOSHI</span>
+              <span class="block text-[0.625rem] font-semibold uppercase tracking-[0.28em] text-mist"
+                >Friends &amp; Fitness</span
+              >
+            </span>
+          </div>
+          <p class="mt-6 max-w-sm text-sm text-mist">
+            Salud, entrenamiento híbrido, running y funcional. Barrio Sur, Montevideo, Uruguay.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-cloud">Navegación</h3>
+          <ul class="mt-5 space-y-0.5 text-sm">
+            <li><a class="f-link" href="#nosotros">Nosotros</a></li>
+            <li><a class="f-link" href="#programas">Programaciones</a></li>
+            <li><a class="f-link" href="#horarios">Horarios</a></li>
+            <li><a class="f-link" href="#resenas">Reseñas</a></li>
+            <li><a class="f-link" href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-cloud">Programaciones</h3>
+          <ul class="mt-5 space-y-0.5 text-sm">
+            <li><a class="f-link" href="#programas">Standard</a></li>
+            <li><a class="f-link" href="#programas">Fit</a></li>
+            <li><a class="f-link" href="#programas">Híbrida</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-cloud">Contacto</h3>
+          <ul class="mt-5 space-y-0.5 text-sm">
+            <li><a class="f-link" href="tel:+59892321900">092 321 900</a></li>
+            <li>
+              <a
+                class="f-link"
+                href="https://maps.google.com/?q=Gutierrez+Ruiz+1061,+Montevideo,+Uruguay"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Gutiérrez Ruiz 1061</a
+              >
+            </li>
+            <li class="text-mist">Lun a Vie 7–13 / 16–22 h</li>
+            <li class="text-mist">Sábados 9–12 h</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-line">
+        <div class="shell flex flex-col items-center justify-between gap-3 py-6 text-xs text-ash sm:flex-row">
+          <p>© <span id="year">2026</span> Satoshi Friends &amp; Fitness. Todos los derechos reservados.</p>
+          <p>Gutiérrez Ruiz 1061 — Montevideo, Uruguay</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp flotante -->
+    <a
+      id="wa-fab"
+      href="https://wa.me/59892321900?text=Hola%20Satoshi%2C%20quiero%20info%20sobre%20las%20clases"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="fixed right-5 z-40 grid size-14 place-items-center rounded-full bg-ember-deep text-white shadow-[0_10px_40px_-8px_rgba(226,59,38,0.9)] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-110 active:scale-95"
+      style="bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px))"
+      aria-label="Escribinos por WhatsApp"
+    >
+      <svg class="size-7" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.42 1.3-1.95 1.34-.5.04-.96.22-3.23-.67-2.72-1.07-4.44-3.85-4.57-4.03-.13-.18-1.09-1.45-1.09-2.77s.69-1.96.94-2.23c.24-.27.53-.34.71-.34s.35 0 .5.01c.16.01.38-.06.59.45.22.53.74 1.85.8 1.98.07.13.11.29.02.47-.09.18-.13.29-.27.44-.13.16-.28.35-.4.47-.13.13-.27.28-.12.54.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.59-.13.24.09 1.55.73 1.81.86.27.13.44.2.51.31.06.11.06.64-.18 1.32Z" />
+      </svg>
+    </a>
+
+    <!-- GSAP (CDN). Si falla, el sitio queda 100% visible y usable. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>
