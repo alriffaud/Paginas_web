@@ -633,6 +633,31 @@
     color: var(--color-ash);
   }
 
+  /* --- Reseñas: cita destacada -----------------------------------------
+     Es el único lugar del sitio con tipografía grande, liviana y en caja
+     baja. Todo lo demás es condensada, pesada y en mayúsculas, así que
+     este bloque rompe el ritmo por contraste tipográfico y no sumando
+     elementos. Por eso la sección no lleva etiqueta ni título visible.
+     -------------------------------------------------------------------- */
+  .quote-hero {
+    font-family: var(--font-body);
+    font-size: clamp(1.5rem, 4.2vw, 3rem);
+    font-weight: 300;
+    line-height: 1.28;
+    letter-spacing: -0.015em;
+    color: var(--color-cloud);
+    text-wrap: balance;
+  }
+
+  .quote-nombre {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-cloud);
+  }
+
   /* --- Reseñas --------------------------------------------------------- */
   .review {
     flex: none;

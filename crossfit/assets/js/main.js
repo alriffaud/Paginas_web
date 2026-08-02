@@ -658,7 +658,23 @@
 
     const star = `<svg class="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.6 2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>`;
 
-    track.innerHTML = RESENAS.map((r) => {
+    // La primera reseña abre la sección como cita grande; el carril lleva
+    // el resto. Sale del mismo array, así que no hay texto duplicado: para
+    // cambiar la destacada alcanza con reordenar RESENAS.
+    const destacada = $("#rev-destacada");
+    const [primera, ...resto] = RESENAS;
+
+    if (destacada && primera) {
+      destacada.innerHTML = `
+        <div class="review-stars justify-center" role="img" aria-label="5 de 5 estrellas">${star.repeat(5)}</div>
+        <blockquote class="quote-hero mt-8">“${primera.texto}”</blockquote>
+        <figcaption class="mt-10">
+          <span class="block quote-nombre">${primera.nombre}</span>
+          <span class="mt-1.5 block text-sm text-ash">${primera.etiqueta}</span>
+        </figcaption>`;
+    }
+
+    track.innerHTML = (destacada && primera ? resto : RESENAS).map((r) => {
       const iniciales = r.nombre
         .split(" ")
         .map((w) => w[0])

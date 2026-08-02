@@ -811,45 +811,51 @@
       <!-- ================================================================
            RESEÑAS
            ================================================================ -->
-      <section id="resenas" class="relative overflow-hidden border-y border-line bg-ink-soft py-24 lg:py-32">
+      <section
+        id="resenas"
+        class="relative overflow-hidden border-y border-line bg-ink-soft py-24 lg:py-32"
+        aria-labelledby="resenas-titulo"
+      >
         <div class="shell">
-          <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <div class="max-w-2xl" data-reveal="up">
-              <p class="eyebrow">La comunidad</p>
-              <h2 class="title-lg mt-5 font-black">Lo que dicen<br /><span class="text-ember">nuestros socios</span></h2>
-            </div>
+          <!-- Sin etiqueta ni título visibles: la sección abre con la cita.
+               El h2 se mantiene para lectores de pantalla, que navegan por
+               encabezados y si no la sección quedaría fuera del índice. -->
+          <h2 id="resenas-titulo" class="sr-only">Lo que dicen nuestros socios</h2>
 
-            <div class="flex items-center gap-3" data-reveal="up">
-              <button
-                type="button"
-                id="rev-prev"
-                class="grid size-12 place-items-center rounded-sm border border-line text-cloud transition-colors duration-200 hover:border-ember hover:text-ember-bright"
-                aria-label="Reseñas anteriores"
-              >
-                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
-                  <path d="M19 12H5M11 18l-6-6 6-6" />
-                </svg>
-              </button>
-              <button
-                type="button"
-                id="rev-next"
-                class="grid size-12 place-items-center rounded-sm border border-line text-cloud transition-colors duration-200 hover:border-ember hover:text-ember-bright"
-                aria-label="Reseñas siguientes"
-              >
-                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </button>
-            </div>
+          <!-- Cita destacada: se genera desde RESENAS[0] en main.js -->
+          <figure id="rev-destacada" class="mx-auto max-w-4xl text-center" data-reveal="up"></figure>
+
+          <!-- Flechas del carril, alineadas a la derecha -->
+          <div class="mt-20 flex items-center justify-end gap-3" data-reveal="up">
+            <button
+              type="button"
+              id="rev-prev"
+              class="grid size-12 place-items-center rounded-sm border border-line text-cloud transition-colors duration-200 hover:border-ember hover:text-ember-bright"
+              aria-label="Reseñas anteriores"
+            >
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                <path d="M19 12H5M11 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              id="rev-next"
+              class="grid size-12 place-items-center rounded-sm border border-line text-cloud transition-colors duration-200 hover:border-ember hover:text-ember-bright"
+              aria-label="Reseñas siguientes"
+            >
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </button>
           </div>
 
           <!-- Carril con scroll-snap: nativo, táctil y accesible por teclado -->
           <div
             id="rev-track"
-            class="no-scrollbar mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2"
+            class="no-scrollbar mt-6 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2"
             tabindex="0"
             role="region"
-            aria-label="Reseñas de socios, desplazable horizontalmente"
+            aria-label="Más reseñas de socios, desplazable horizontalmente"
           ></div>
         </div>
       </section>
