@@ -268,7 +268,10 @@
             </p>
 
             <div class="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center" data-hero="5">
-              <a href="#contacto" class="btn btn-primary w-full sm:w-auto">
+              <!-- data-magnetic: único botón del sitio que sigue al cursor.
+                   El efecto es jerarquía, no decoración: si lo tuvieran todos,
+                   ninguno destacaría. Ver initMagnetic en assets/js/main.js. -->
+              <a href="#contacto" class="btn btn-primary w-full sm:w-auto" data-magnetic>
                 Reservá tu clase de prueba
                 <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
                   <path d="M5 12h14M13 6l6 6-6 6" />

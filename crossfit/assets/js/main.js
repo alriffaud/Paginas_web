@@ -876,20 +876,44 @@
     // Micro-interacción de puntero: solo en dispositivos con hover real.
     if (!animate || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
-    $$(".btn-primary").forEach((btn) => {
-      const reset = () => window.gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1,0.4)" });
+    // Se marca en el HTML con data-magnetic, no con la clase del botón.
+    // Antes seguía a `.btn-primary`, que son 7 en la página: cuando todo se
+    // mueve, nada destaca. El efecto es jerarquía, así que va en el único
+    // botón que tiene que ganar la pantalla. Los demás conservan sus
+    // transiciones de color y la escala al presionar, que ya alcanzan.
+    $$("[data-magnetic]").forEach((btn) => {
+      // quickTo reutiliza un mismo tween en vez de crear uno por evento.
+      const moverX = window.gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3.out" });
+      const moverY = window.gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3.out" });
+
+      // GSAP escribe `transform` inline, que pisa el scale(0.975) de
+      // `.btn:active`. Los demás botones conservan esa regla porque ya no
+      // los toca ningún tween; en este hay que devolver el gesto acá.
+      // Sin `overwrite`: son eventos puntuales, y sobrescribir podría matar
+      // los tweens de x/y que corren en paralelo.
+      const escalar = (v) => window.gsap.to(btn, { scale: v, duration: 0.18, ease: "power2.out" });
+
+      btn.addEventListener("pointerdown", () => escalar(0.975));
+      btn.addEventListener("pointerup", () => escalar(1));
+
+      const soltar = () => {
+        escalar(1);
+        window.gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1,0.4)" });
+      };
 
       btn.addEventListener("pointermove", (e) => {
-        const r = btn.getBoundingClientRect();
-        window.gsap.to(btn, {
-          x: (e.clientX - (r.left + r.width / 2)) * 0.16,
-          y: (e.clientY - (r.top + r.height / 2)) * 0.28,
-          duration: 0.4,
-          ease: "power3.out",
-        });
+        if (e.pointerType !== "mouse") return;
+        // El rect se lee en cada movimiento en vez de cachearse: es un solo
+        // elemento chico, y así el efecto no se descalibra si la página
+        // scrollea mientras el cursor está encima.
+        const caja = btn.getBoundingClientRect();
+        // El tirón se limita para que el botón nunca salga de su zona táctil.
+        moverX((e.clientX - (caja.left + caja.width / 2)) * 0.16);
+        moverY((e.clientY - (caja.top + caja.height / 2)) * 0.28);
       });
-      btn.addEventListener("pointerleave", reset);
-      btn.addEventListener("blur", reset);
+
+      btn.addEventListener("pointerleave", soltar);
+      btn.addEventListener("blur", soltar);
     });
   }
 

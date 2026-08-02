@@ -224,10 +224,18 @@ recalcular el diseño y provocan tirones en celulares de gama media.
 - Aparición de secciones al hacer scroll, escalonada entre elementos hermanos
 - Contadores numéricos
 - Parallax suave en las fotos — **sólo en escritorio**
-- Botón que sigue al cursor — **sólo con mouse**
+- Botón que sigue al cursor — **un solo botón en todo el sitio, sólo con mouse**
 - Profundidad por puntero en "Quiénes somos" y "Friends & Fitness" — **sólo con mouse**
 - Marquee infinito en CSS puro
 - Video de fondo en el encabezado, con control de pausa
+
+**Un solo botón magnético.** El efecto de seguir al cursor está en el CTA del hero y
+en ningún otro. Se marca con `data-magnetic` en el HTML, no con la clase del botón,
+para que quede explícito cuál es el elemento focal. El movimiento es jerarquía: si lo
+tuvieran los siete botones primarios, ninguno destacaría, y el recurso quedaría como
+un tic en vez de una intención. Los demás botones conservan su transición de color y
+el `scale(0.975)` al presionar; en el magnético esa escala se aplica desde GSAP,
+porque el `transform` inline que escribe pisaría la regla CSS.
 
 **Profundidad por puntero.** Al mover el mouse dentro de "Quiénes somos" y
 "Friends & Fitness" reaccionan tres capas a distinta velocidad: un foco ámbar que sigue
