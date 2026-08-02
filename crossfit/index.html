@@ -197,20 +197,31 @@
         <!-- Fondo -->
         <div class="absolute inset-0 -z-10">
           <div class="media absolute inset-0">
-            <img
-              src="assets/img/hero.webp"
-              alt=""
+            <!-- Sin el atributo `autoplay`: la reproducción la decide el JS
+                 según prefers-reduced-motion y el modo de ahorro de datos.
+                 Si el JS no corre, queda el póster, que es el primer
+                 fotograma del video: no se nota la diferencia. -->
+            <video
+              id="hero-video"
+              class="opacity-45"
+              poster="assets/video/presentacion-poster.webp"
+              width="1376"
+              height="768"
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              disablepictureinpicture
               aria-hidden="true"
-              fetchpriority="high"
-              width="1269"
-              height="781"
-              data-parallax="0.16"
-              class="scale-110 opacity-45"
-            />
+              tabindex="-1"
+            >
+              <source src="assets/video/presentacion.webm" type="video/webm" />
+              <source src="assets/video/presentacion.mp4" type="video/mp4" />
+            </video>
           </div>
           <div class="absolute inset-0 bg-ink/45"></div>
           <div class="absolute inset-0 ink-fade-b"></div>
-          <div class="absolute inset-0 hidden ink-fade-r lg:block"></div>
+          <div class="hero-scrim absolute inset-0"></div>
           <!-- Halo ambiental -->
           <div
             class="drift absolute -left-40 top-1/4 size-[42rem] rounded-full bg-ember/16 blur-[130px]"
@@ -278,6 +289,24 @@
           Scroll
           <span class="block h-10 w-px bg-gradient-to-b from-ember to-transparent"></span>
         </a>
+
+        <!-- Control de pausa del video de fondo (WCAG 2.2.2: todo movimiento
+             automático que dure más de 5 s tiene que poder detenerse).
+             El JS sólo lo muestra si el video llegó a reproducirse. -->
+        <button
+          id="hero-video-toggle"
+          type="button"
+          class="glass absolute bottom-6 right-5 z-10 hidden size-11 place-items-center rounded-full text-cloud transition-colors duration-200 hover:text-ember-bright"
+          aria-label="Pausar el video de fondo"
+        >
+          <svg data-icon="pause" class="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <rect x="7" y="5" width="3.6" height="14" rx="1" />
+            <rect x="13.4" y="5" width="3.6" height="14" rx="1" />
+          </svg>
+          <svg data-icon="play" class="hidden size-4 translate-x-px" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M8 5.2a1 1 0 0 1 1.5-.87l9 6.8a1 1 0 0 1 0 1.74l-9 6.8A1 1 0 0 1 8 18.8Z" />
+          </svg>
+        </button>
       </section>
 
       <!-- ================================================================

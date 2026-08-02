@@ -149,7 +149,96 @@
   }
 
   /* ======================================================================
-     4. HEADER — estado al hacer scroll + link activo
+     4. VIDEO DEL HERO
+     ----------------------------------------------------------------------
+     El <video> no lleva `autoplay` en el HTML a propósito: así el control
+     de si se reproduce o no queda acá, donde podemos consultar las
+     preferencias del usuario. Si algo falla, queda el póster, que es el
+     primer fotograma del propio video.
+     ====================================================================== */
+
+  function initHeroVideo() {
+    const video = $("#hero-video");
+    const toggle = $("#hero-video-toggle");
+    if (!video) return;
+
+    const ahorroDatos = window.matchMedia("(prefers-reduced-data: reduce)").matches;
+
+    // Movimiento reducido o ahorro de datos: nos quedamos con el póster.
+    // Ni siquiera se descarga el video.
+    if (reduceMotion || ahorroDatos) {
+      // "none" y no removeAttribute: al quitarlo el navegador vuelve a su
+      // valor por defecto, que en varios casos ya descarga el archivo.
+      video.setAttribute("preload", "none");
+      return;
+    }
+
+    let pausadoPorUsuario = false;
+
+    const pintarControl = () => {
+      if (!toggle) return;
+      const enPausa = video.paused;
+      toggle.setAttribute(
+        "aria-label",
+        enPausa ? "Reproducir el video de fondo" : "Pausar el video de fondo"
+      );
+      const pausa = $('[data-icon="pause"]', toggle);
+      const play = $('[data-icon="play"]', toggle);
+      if (pausa) pausa.classList.toggle("hidden", enPausa);
+      if (play) play.classList.toggle("hidden", !enPausa);
+    };
+
+    const mostrarControl = () => {
+      if (!toggle || !toggle.classList.contains("hidden")) return;
+      toggle.classList.remove("hidden");
+      toggle.classList.add("grid");
+      pintarControl();
+      if (animate) {
+        window.gsap.from(toggle, { opacity: 0, y: 10, duration: 0.5, ease: "expo.out" });
+      }
+    };
+
+    // play() devuelve una promesa: si el navegador bloquea la reproducción
+    // automática, no mostramos el control (no habría nada que pausar).
+    video
+      .play()
+      .then(mostrarControl)
+      .catch(() => {});
+
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        if (video.paused) {
+          pausadoPorUsuario = false;
+          video.play().catch(() => {});
+        } else {
+          pausadoPorUsuario = true;
+          video.pause();
+        }
+        pintarControl();
+      });
+    }
+
+    video.addEventListener("play", pintarControl);
+    video.addEventListener("pause", pintarControl);
+
+    // Fuera de pantalla no tiene sentido decodificar cuadros: se pausa para
+    // ahorrar batería, salvo que el usuario lo haya pausado a mano.
+    const hero = $("#inicio");
+    if (hero && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        ([entry]) => {
+          if (pausadoPorUsuario) return;
+          if (entry.isIntersecting) video.play().catch(() => {});
+          else video.pause();
+        },
+        { threshold: 0.05 }
+      );
+      io.observe(hero);
+    }
+  }
+
+  /* ======================================================================
+     5. HEADER — estado al hacer scroll + link activo
      ====================================================================== */
 
   function initHeader() {
@@ -206,7 +295,7 @@
   }
 
   /* ======================================================================
-     5. MENÚ MÓVIL — con trampa de foco y cierre por Escape
+     6. MENÚ MÓVIL — con trampa de foco y cierre por Escape
      ====================================================================== */
 
   function initMobileMenu() {
@@ -271,7 +360,7 @@
   }
 
   /* ======================================================================
-     6. HORARIOS — render + filtro
+     7. HORARIOS — render + filtro
      ====================================================================== */
 
   function initSchedule() {
@@ -333,7 +422,7 @@
   }
 
   /* ======================================================================
-     7. RESEÑAS — carril con scroll-snap nativo
+     8. RESEÑAS — carril con scroll-snap nativo
      ====================================================================== */
 
   function initReviews() {
@@ -385,7 +474,7 @@
   }
 
   /* ======================================================================
-     8. PROGRAMACIONES — acordeón accesible
+     9. PROGRAMACIONES — acordeón accesible
      ====================================================================== */
 
   function initPrograms() {
@@ -440,7 +529,7 @@
   }
 
   /* ======================================================================
-     9. FORMULARIO — validación + envío por WhatsApp / email
+     10. FORMULARIO — validación + envío por WhatsApp / email
      ====================================================================== */
 
   function initForm() {
@@ -554,7 +643,7 @@
   }
 
   /* ======================================================================
-     10. ANIMACIONES GSAP
+     11. ANIMACIONES GSAP
      ====================================================================== */
 
   function initHero() {
@@ -698,7 +787,7 @@
   }
 
   /* ======================================================================
-     11. VARIOS
+     12. VARIOS
      ====================================================================== */
 
   function initMisc() {
@@ -738,6 +827,7 @@
 
   function boot() {
     guardImages();
+    initHeroVideo();
     initHeader();
     initScrollSpy();
     initMobileMenu();

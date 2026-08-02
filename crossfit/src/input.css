@@ -635,7 +635,8 @@
     overflow: hidden;
     background: linear-gradient(135deg, #1e2024 0%, #101114 55%, #2a1512 100%);
   }
-  .media img {
+  .media img,
+  .media video {
     display: block;
     width: 100%;
     height: 100%;
@@ -666,6 +667,32 @@
       rgba(8, 8, 10, 0.82) 45%,
       transparent 100%
     );
+  }
+
+  /* Scrim de legibilidad del hero.
+     El video de fondo tiene fotogramas claros (un disco metálico entrando en
+     cuadro). Sin esta capa, sobre el 1% de píxeles más brillantes el título
+     rojo cae a 2,55:1, por debajo del mínimo de 3:1 para texto grande.
+     En escritorio el degradado va de izquierda a derecha, siguiendo la
+     columna de texto; al apilarse el contenido pasa a ser vertical. */
+  .hero-scrim {
+    background-image: linear-gradient(
+      to bottom,
+      rgba(8, 8, 10, 0.7) 0%,
+      rgba(8, 8, 10, 0.58) 50%,
+      rgba(8, 8, 10, 0.32) 78%,
+      rgba(8, 8, 10, 0) 100%
+    );
+  }
+  @media (min-width: 1024px) {
+    .hero-scrim {
+      background-image: linear-gradient(
+        to right,
+        var(--color-ink) 0%,
+        rgba(8, 8, 10, 0.82) 45%,
+        transparent 100%
+      );
+    }
   }
   .ember-glow {
     box-shadow: 0 0 90px -20px rgba(226, 59, 38, 0.55);

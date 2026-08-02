@@ -62,6 +62,7 @@ assets/css/main.css     CSS compilado (generado — no editar a mano)
 assets/js/main.js       Animaciones, horarios, reseñas, formulario
 assets/img/             Fotos optimizadas para la web (generadas)
 assets/img/originales/  Fotos originales del gimnasio — nunca se tocan
+assets/video/           Video de fondo del encabezado + su póster
 scripts/images.mjs      Recorta y optimiza las fotos (npm run images)
 ```
 
@@ -90,6 +91,29 @@ se ajusta solo. Las iniciales del avatar se calculan a partir del nombre.
 Están escritos directamente en `index.html`, en la sección `PROGRAMACIONES`. El texto
 corto es el que se ve siempre; el largo está dentro de `<div class="prog-more">` y se
 despliega con "Leer más".
+
+### Video del encabezado
+
+Está en `assets/video/`, en dos formatos: `presentacion.webm` (253 KB, lo eligen
+Chrome, Firefox y Android) y `presentacion.mp4` (582 KB, para Safari). El navegador
+toma el primero que soporta. `presentacion-poster.webp` es el primer fotograma y se ve
+mientras el video carga, o en lugar del video si el usuario pidió menos movimiento.
+
+Para reemplazarlo por otro video:
+
+```bash
+ffmpeg -i nuevo.mp4 -c copy -movflags +faststart assets/video/presentacion.mp4
+ffmpeg -i nuevo.mp4 -c:v libvpx-vp9 -crf 36 -b:v 0 -an assets/video/presentacion.webm
+ffmpeg -i nuevo.mp4 -frames:v 1 -q:v 2 poster.jpg
+```
+
+`-movflags +faststart` mueve el índice al principio del archivo: sin eso el video no
+empieza a reproducirse hasta terminar de descargarse. `-an` descarta el audio, que no
+se usa. Convertí `poster.jpg` a WebP y guardalo como `presentacion-poster.webp`.
+
+Si cambiás el video, **volvé a mirar el contraste del título**: un video más claro
+puede dejar ilegible el "CON PROPÓSITO" en rojo. La intensidad del oscurecimiento se
+ajusta en `.hero-scrim`, dentro de `src/input.css`.
 
 ### Colores
 
@@ -168,6 +192,7 @@ recalcular el diseño y provocan tirones en celulares de gama media.
 - Parallax suave en las fotos — **sólo en escritorio**
 - Botón que sigue al cursor — **sólo con mouse**
 - Marquee infinito en CSS puro
+- Video de fondo en el encabezado, con control de pausa
 
 **Sin JavaScript el sitio sigue funcionando.** GSAP se carga desde un CDN; si falla,
 no queda nada oculto, porque las animaciones nunca esconden contenido desde el CSS.
@@ -190,6 +215,14 @@ Verificado sobre el sitio ya construido:
   `aria-hidden`, errores de formulario con `role="alert"`, filtros con `aria-pressed`.
 - **`prefers-reduced-motion`:** si el usuario lo activa, se apagan todas las animaciones
   y todo el contenido queda visible.
+- **Video de fondo:** no lleva `autoplay` en el HTML; lo arranca el JS sólo si el
+  usuario no pidió menos movimiento ni está en modo de ahorro de datos. Tiene botón de
+  pausa (WCAG 2.2.2) y se detiene solo cuando el encabezado sale de pantalla, salvo
+  que lo hayas pausado a mano. Si el JS no corre, queda el póster.
+- **Contraste sobre el video:** verificado fotograma por fotograma contra el 1% de
+  píxeles más claros de cada franja de texto. Peor caso: 4,29:1 en móvil y 4,16:1 en
+  escritorio para el título rojo (mínimo 3:1); 7,89:1 y 8,18:1 para el párrafo
+  (mínimo 4,5:1).
 - **Sin scroll horizontal** a 375 px ni en orientación apaisada.
 - **Sin saltos de diseño:** todas las imágenes declaran `width` y `height`; las fuentes
   usan `display=swap`.
