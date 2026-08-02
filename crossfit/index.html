@@ -235,6 +235,19 @@
           </div>
           <div class="absolute inset-0 bg-ink/45"></div>
           <div class="absolute inset-0 ink-fade-b"></div>
+          <!-- Sello 聡 (satoshi): el caracter del cartel de la fachada. Va como
+               contorno vectorial y no como texto, asi no depende de que el
+               visitante tenga una fuente japonesa instalada. El trazado sale
+               del glifo de Noto Sans JP (licencia SIL OFL). -->
+          <svg
+            class="hero-seal hidden lg:block"
+            viewBox="0 0 957 933"
+            fill="currentColor"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <g transform="translate(-25,843)"><path d="M622-657L732-630Q715-585 695.50-537Q676-489 657-446.50Q638-404 620-371L529-397Q546-432 563.50-477.50Q581-523 596.50-570.50Q612-618 622-657M731-510L818-555Q845-523 871.50-484.50Q898-446 920-409Q942-372 953-341L859-289Q849-319 829-357.50Q809-396 783.50-436Q758-476 731-510M467-325L454-429Q530-431 634.50-436.50Q739-442 846-447L845-351Q745-343 645.50-336.50Q546-330 467-325M553-840L659-818Q634-732 590-656.50Q546-581 491-531Q483-541 467.50-555Q452-569 436-582.50Q420-596 408-605Q459-645 496-707Q533-769 553-840M716-814L806-843Q824-801 851.50-760.50Q879-720 912.50-685.50Q946-651 981-628Q963-613 940-587Q917-561 903-541Q865-571 829.50-614.50Q794-658 765.50-710Q737-762 716-814M577-276L644-342Q687-320 729.50-289.50Q772-259 797-232L726-157Q711-177 686-198.50Q661-220 632.50-240.50Q604-261 577-276M554-38L554-222L653-222L653-39Q653-20 657.50-15.50Q662-11 678-11Q681-11 689-11Q697-11 706.50-11Q716-11 725-11Q734-11 738-11Q748-11 753-17Q758-23 761-41.50Q764-60 765-98Q779-87 805.50-76Q832-65 852-60Q848-4 836.50 27Q825 58 804 70Q783 82 749 82Q743 82 731 82Q719 82 705.50 82Q692 82 680.50 82Q669 82 662 82Q618 82 594 70.50Q570 59 562 33Q554 7 554-38M41-705L41-812L451-812L451-705L41-705M157-501L157-599L339-599L339-501L157-501M157-297L157-395L339-395L339-297L157-297M95-127L95-755L199-755L199-127L95-127M286 90L286-755L393-755L393 90L286 90M48-41L25-152Q84-160 165-172.50Q246-185 330-198L338-95Q263-81 187.50-67Q112-53 48-41M455-209L546-180Q540-141 529.50-100.50Q519-60 503.50-23Q488 14 465 43L380-17Q409-51 427.50-103.50Q446-156 455-209M792-181L883-219Q906-184 926-143Q946-102 960.50-62.50Q975-23 982 8L883 50Q878 19 865-21.50Q852-62 833-103.50Q814-145 792-181" /></g>
+          </svg>
           <div class="hero-scrim absolute inset-0"></div>
           <!-- Halo ambiental -->
           <div
@@ -242,13 +255,6 @@
             aria-hidden="true"
           ></div>
         </div>
-
-        <!-- Marca gigante de fondo -->
-        <span
-          class="pointer-events-none absolute -right-10 top-[58%] -z-10 hidden -translate-y-1/2 select-none font-display text-[20vw] font-black leading-none title-outline xl:block"
-          aria-hidden="true"
-          >SATOSHI</span
-        >
 
         <div class="shell relative w-full">
           <div class="max-w-3xl">
