@@ -133,7 +133,7 @@ en el código:
 | **Email real del gimnasio** | `assets/js/main.js` → `CONFIG.email` | Placeholder `hola@satoshifitness.uy` |
 | **Reseñas reales** | `assets/js/main.js` → `RESENAS` | 6 reseñas de ejemplo con nombres ficticios |
 | **Grilla de horarios real** | `assets/js/main.js` → `IMPARES` / `PARES` / `HORARIOS` | Grilla propuesta dentro de las franjas reales (7–13 y 16–22, sábado 9–12) |
-| **Dominio** | `index.html` → `<link rel="canonical">` | `https://satoshifitness.uy/` |
+| **Dominio** | 6 líneas en `index.html`, marcadas `REEMPLAZAR-DOMINIO` | Sin definir — ver sección 4 |
 
 Las fotos ya son todas reales del gimnasio (ver `assets/img/README.md`). El Instagram
 `@satoshi_crossfit` sale del cartel de la fachada en la foto grupal; confirmá que sea
@@ -155,6 +155,40 @@ proyecto, ya compilada con `npm run build`. Se publica con HTTPS automático.
 
 **Hosting compartido / cPanel:** subí por FTP `index.html` y la carpeta `assets/`
 completa. No hace falta subir `node_modules/`, `src/` ni `package.json`.
+
+### El dominio: hacelo en dos pasos, no en uno
+
+Hoy no hay dominio definitivo — el plan es pushear a GitHub, deployar a Vercel o
+Netlify con su URL temporal (algo como `satoshi-crossfit.vercel.app`) para mostrarle
+el sitio a un posible cliente, y recién después conseguir un dominio propio. Eso está
+bien: **el orden correcto es deployar primero y completar el dominio después**, nunca
+al revés, porque ni Vercel ni Netlify asignan la URL hasta que el primer deploy ya
+existe.
+
+Hay 6 líneas en `index.html` que necesitan una URL absoluta — `canonical`, `og:url`,
+`og:image` y tres campos del JSON-LD (`url`, `logo`, `image`). Los motores que generan
+la vista previa al compartir un link (WhatsApp, Instagram, Facebook, LinkedIn) exigen
+que esas URLs sean absolutas; una ruta relativa como `assets/img/og.jpg` no funciona
+ahí, aunque en el sitio la imagen se vea perfecta. No hay forma de evitar este paso.
+
+Las 6 líneas están marcadas con el placeholder `REEMPLAZAR-DOMINIO`, así que actualizarlas
+es una sola búsqueda y reemplazo:
+
+```bash
+# después de deployar, con la URL que te haya dado Vercel/Netlify
+sed -i 's#https://REEMPLAZAR-DOMINIO.com#https://satoshi-crossfit.vercel.app#g' index.html
+```
+
+En Windows con PowerShell:
+
+```powershell
+(Get-Content index.html) -replace 'https://REEMPLAZAR-DOMINIO\.com', 'https://satoshi-crossfit.vercel.app' | Set-Content index.html -Encoding utf8
+```
+
+**Vas a repetir este mismo paso una segunda vez** cuando pasen de la URL temporal al
+dominio propio — no lo dejes como un pendiente indefinido, porque significa que
+durante todo ese tiempo el sitio no genera vista previa al compartirse por WhatsApp,
+que es el canal que más van a usar para difundirlo.
 
 ---
 

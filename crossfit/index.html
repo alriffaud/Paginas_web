@@ -10,10 +10,23 @@
       name="description"
       content="Box de entrenamiento funcional en Barrio Sur, Montevideo. Tres programaciones — Standard, Fit e Híbrida — escalables, progresivas y siempre guiadas por coach. Gutiérrez Ruiz 1061."
     />
-    <link rel="canonical" href="https://satoshifitness.uy/" />
+    <!--
+      TODO DOMINIO: todavía no hay dominio definitivo (se va a mostrar primero
+      en una URL temporal de Vercel/Netlify). Las 5 líneas marcadas con
+      "REEMPLAZAR-DOMINIO" son las únicas que dependen del dominio en todo
+      el archivo. Cuando tengas la URL (temporal o definitiva), corré:
+
+        sed -i 's#https://REEMPLAZAR-DOMINIO.com#https://tu-url-real.com#g' index.html
+
+      Vas a repetir este mismo paso más adelante cuando pases de la URL
+      temporal al dominio definitivo — es normal, no hay forma de evitarlo:
+      estos tags exigen una URL absoluta que coincida con donde vive el sitio.
+    -->
+    <link rel="canonical" href="https://REEMPLAZAR-DOMINIO.com/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://REEMPLAZAR-DOMINIO.com/" />
     <meta property="og:locale" content="es_UY" />
     <meta property="og:site_name" content="Satoshi Friends & Fitness" />
     <meta property="og:title" content="Satoshi Friends & Fitness | Montevideo" />
@@ -21,7 +34,7 @@
       property="og:description"
       content="Salud, entrenamiento híbrido, running y funcional. Gutiérrez Ruiz 1061, Barrio Sur."
     />
-    <meta property="og:image" content="assets/img/og.jpg" />
+    <meta property="og:image" content="https://REEMPLAZAR-DOMINIO.com/assets/img/og.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="La comunidad de Satoshi Friends & Fitness en la puerta del box" />
@@ -56,8 +69,9 @@
         },
         "telephone": "+59892321900",
         "openingHours": ["Mo-Fr 07:00-13:00", "Mo-Fr 16:00-22:00", "Sa 09:00-12:00"],
-        "logo": "assets/img/logo.png",
-        "image": "assets/img/og.jpg",
+        "url": "https://REEMPLAZAR-DOMINIO.com/",
+        "logo": "https://REEMPLAZAR-DOMINIO.com/assets/img/logo.png",
+        "image": "https://REEMPLAZAR-DOMINIO.com/assets/img/og.jpg",
         "sameAs": ["https://www.instagram.com/satoshi_crossfit/"]
       }
     </script>
