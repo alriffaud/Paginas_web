@@ -79,7 +79,8 @@ scripts/images.mjs      Recorta y optimiza las fotos (npm run images)
 
 `assets/js/main.js`, constantes `IMPARES`, `PARES` y `HORARIOS`. Cada clase es
 `{ t: "07:00", prog: "standard" }` y `prog` sólo puede ser `standard`, `fit` o `hibrida`.
-La grilla y los filtros se regeneran solos: no hay que tocar el HTML.
+La grilla, las pestañas y los filtros se regeneran solos desde ese único array: no hay
+que tocar el HTML ni mantener dos copias de los datos.
 
 ### Reseñas
 
@@ -226,8 +227,24 @@ recalcular el diseño y provocan tirones en celulares de gama media.
 - Parallax suave en las fotos — **sólo en escritorio**
 - Botón que sigue al cursor — **un solo botón en todo el sitio, sólo con mouse**
 - Profundidad por puntero en "Quiénes somos" y "Friends & Fitness" — **sólo con mouse**
+- Crossfade al cambiar de día en horarios (móvil)
 - Marquee infinito en CSS puro
 - Video de fondo en el encabezado, con control de pausa
+
+**Horarios: dos componentes, un solo dato.** Por debajo de 1024 px la grilla se
+convierte en un selector de día: pestañas Lun–Sáb con un solo día visible, abriendo en
+el día actual (los domingos, cerrados, abre en lunes sin marcarlo como hoy). En
+escritorio se mantiene la grilla de seis columnas, que ahí sí sirve para comparar días.
+
+Esto bajó la sección de **4,88 a 1,77 pantallas de scroll** en 375 px, y la página
+entera de 18,6 a 16,3. Era el bloque más largo del sitio y el más consultado: nadie lee
+seis días de corrido, busca el suyo.
+
+Como el mismo HTML se presenta de dos formas, la semántica ARIA sigue a lo que se ve:
+los roles `tablist`/`tab`/`tabpanel` se ponen y se sacan desde JS según el breakpoint,
+porque no se pueden condicionar por media query. Las pestañas llevan navegación con
+flechas, Home y End, y tabindex móvil. El cambio de día interpola la altura del
+contenedor para que el contenido de abajo no salte.
 
 **Un solo botón magnético.** El efecto de seguir al cursor está en el CTA del hero y
 en ningún otro. Se marca con `data-magnetic` en el HTML, no con la clase del botón,
@@ -284,6 +301,8 @@ Verificado sobre el sitio ya construido:
 - **Foco por puntero:** en su punto más intenso sube la luminancia del fondo de 0,0025 a
   0,0119. El texto que queda encima baja de 18,2:1 a 15,4:1 (títulos), de 8,4:1 a 7,1:1
   (párrafos) y de 6,5:1 a 5,5:1 (etiquetas). Todo sigue sobre el mínimo AA.
+- **Selector de día:** patrón ARIA de pestañas completo, con roles que se retiran en
+  escritorio para no anunciar un tablist donde se ven los seis días a la vez.
 - **Sin scroll horizontal** a 375 px ni en orientación apaisada.
 - **Sin saltos de diseño:** todas las imágenes declaran `width` y `height`; las fuentes
   usan `display=swap`.

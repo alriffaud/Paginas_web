@@ -367,9 +367,28 @@
     const grid = $("#schedule-grid");
     if (!grid) return;
 
-    grid.innerHTML = HORARIOS.map(
-      (dia) => `
-      <div class="day-card">
+    const listaTabs = $("#schedule-tabs");
+    const estado = $("#schedule-status");
+
+    // Los ids se arman con el índice del día y no con su nombre: así no hay
+    // que normalizar acentos ("Miércoles", "Sábado") ni depender de la
+    // codificación del archivo. Sólo se usan para enlazar pestaña y panel.
+    const idPanel = (i) => `panel-dia-${i}`;
+    const idTab = (i) => `tab-dia-${i}`;
+
+    // El domingo el box está cerrado: se abre en lunes, pero sin marcarlo
+    // como "hoy", porque no lo es.
+    const hoyReal = (() => {
+      const d = new Date().getDay(); // 0 domingo … 6 sábado
+      return d >= 1 && d <= 6 ? d - 1 : -1;
+    })();
+    const diaDeHoy = hoyReal === -1 ? 0 : hoyReal;
+
+    /* --- Render. Una sola fuente de datos: HORARIOS ------------------- */
+
+    grid.innerHTML = HORARIOS.map((dia, i) => {
+      return `
+      <div class="day-card" id="${idPanel(i)}">
         <h3 class="day-head">${dia.dia}</h3>
         <div class="flex flex-col" data-slots>
           ${dia.clases
@@ -383,40 +402,248 @@
             .join("")}
         </div>
         <p class="day-empty" hidden>Sin clases de esta programación.</p>
-      </div>`
-    ).join("");
+      </div>`;
+    }).join("");
 
-    const chips = $$(".chip[data-filter]");
+    if (listaTabs) {
+      listaTabs.innerHTML = HORARIOS.map((dia, i) => {
+        const corto = dia.dia.slice(0, 3); // Lun, Mar, Mié, Jue, Vie, Sáb
+        const hoy = i === hoyReal;
+        return `
+        <button type="button" class="day-tab" id="${idTab(i)}" data-indice="${i}"${
+          hoy ? ' data-hoy="true"' : ""
+        }>
+          ${corto}<span class="sr-only"> — ${dia.dia}${hoy ? " (hoy)" : ""}</span>
+        </button>`;
+      }).join("");
+    }
+
     const cards = $$(".day-card", grid);
+    const tabs = listaTabs ? $$(".day-tab", listaTabs) : [];
+    const chips = $$(".chip[data-filter]");
 
-    const apply = (filter) => {
-      cards.forEach((card) => {
-        const slots = $$(".slot", card);
-        let visibles = 0;
+    let activo = diaDeHoy;
+    let modoTabs = false;
+    let filtro = "all";
 
-        slots.forEach((slot) => {
-          const match = filter === "all" || slot.dataset.prog === filter;
-          slot.classList.toggle("is-hidden", !match);
-          if (match) visibles++;
-        });
+    /* --- Altura ------------------------------------------------------
+       Los días tienen distinta cantidad de clases, así que al cambiar de
+       pestaña el bloque cambiaría de alto de golpe y empujaría todo lo de
+       abajo. Se mide antes y después y se interpola. Es una animación de
+       layout, pero acotada a un contenedor y disparada por el usuario, así
+       que no cuenta como salto inesperado.
+       ---------------------------------------------------------------- */
 
-        const empty = $(".day-empty", card);
-        if (empty) empty.hidden = visibles > 0;
+    const conAlturaAnimada = (cambio, animarAltura = true) => {
+      // En la carga inicial no hay nada que interpolar: el usuario todavía
+      // no interactuó. Animar ahí dejaría una altura inline puesta antes de
+      // que el tween arranque, y si por lo que sea no llega a completar,
+      // la grilla queda clavada en esa medida.
+      if (!animarAltura || !modoTabs || !animate) {
+        cambio();
+        return;
+      }
+      const antes = grid.offsetHeight;
+      cambio();
+      const despues = grid.offsetHeight;
+      if (antes === despues) return;
 
-        if (animate && visibles > 0) {
-          window.gsap.fromTo(
-            $$(".slot:not(.is-hidden)", card),
-            { opacity: 0, y: 8 },
-            { opacity: 1, y: 0, duration: 0.3, stagger: 0.02, ease: "power2.out", overwrite: true }
-          );
+      window.gsap.fromTo(
+        grid,
+        { height: antes },
+        {
+          height: despues,
+          duration: 0.35,
+          ease: "expo.out",
+          overwrite: true,
+          onComplete: () => window.gsap.set(grid, { clearProps: "height" }),
         }
+      );
+    };
+
+    /* --- Filtro por programación -------------------------------------- */
+
+    const aplicarFiltro = (nuevoFiltro) => {
+      filtro = nuevoFiltro;
+
+      conAlturaAnimada(() => {
+        cards.forEach((card) => {
+          let visibles = 0;
+
+          $$(".slot", card).forEach((slot) => {
+            const coincide = filtro === "all" || slot.dataset.prog === filtro;
+            slot.classList.toggle("is-hidden", !coincide);
+            if (coincide) visibles++;
+          });
+
+          const vacio = $(".day-empty", card);
+          if (vacio) vacio.hidden = visibles > 0;
+
+          const visible = !card.classList.contains("is-oculto");
+          if (animate && visibles > 0 && visible) {
+            window.gsap.fromTo(
+              $$(".slot:not(.is-hidden)", card),
+              { opacity: 0, y: 8 },
+              { opacity: 1, y: 0, duration: 0.3, stagger: 0.02, ease: "power2.out", overwrite: true }
+            );
+          }
+        });
+      });
+
+      anunciar();
+    };
+
+    const anunciar = () => {
+      if (!estado) return;
+      const nombre = filtro === "all" ? "todas las programaciones" : PROGRAMAS[filtro];
+      if (modoTabs) {
+        const cuenta = $$(".slot:not(.is-hidden)", cards[activo]).length;
+        estado.textContent = `${HORARIOS[activo].dia}: ${cuenta} ${
+          cuenta === 1 ? "clase" : "clases"
+        } de ${nombre}.`;
+      } else {
+        const cuenta = $$(".slot:not(.is-hidden)", grid).length;
+        estado.textContent = `${cuenta} ${cuenta === 1 ? "clase" : "clases"} de ${nombre} en la semana.`;
+      }
+    };
+
+    /* --- Cambio de día ------------------------------------------------ */
+
+    const pintarTabs = () => {
+      tabs.forEach((tab, i) => {
+        const seleccionado = i === activo;
+        tab.setAttribute("aria-selected", String(seleccionado));
+        // Tabindex móvil: sólo la pestaña activa entra en el orden de
+        // tabulación; entre pestañas se navega con las flechas.
+        tab.setAttribute("tabindex", seleccionado ? "0" : "-1");
       });
     };
+
+    const mostrarDia = (indice, { animar = true } = {}) => {
+      if (!modoTabs) return;
+      const cambia = indice !== activo;
+      activo = indice;
+
+      conAlturaAnimada(() => {
+        cards.forEach((card, i) => card.classList.toggle("is-oculto", i !== activo));
+      }, animar);
+
+      pintarTabs();
+
+      if (animar && animate && cambia) {
+        window.gsap.fromTo(
+          cards[activo],
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.4, ease: "expo.out", overwrite: true }
+        );
+      }
+
+      anunciar();
+    };
+
+    const irA = (indice) => {
+      mostrarDia(indice);
+      if (tabs[indice]) tabs[indice].focus();
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => mostrarDia(Number(tab.dataset.indice)));
+    });
+
+    if (listaTabs) {
+      listaTabs.addEventListener("keydown", (e) => {
+        const ultimo = tabs.length - 1;
+        const pasos = { ArrowRight: 1, ArrowLeft: -1 };
+
+        if (e.key === "Home") {
+          e.preventDefault();
+          irA(0);
+          return;
+        }
+        if (e.key === "End") {
+          e.preventDefault();
+          irA(ultimo);
+          return;
+        }
+        const paso = pasos[e.key];
+        if (!paso) return;
+        e.preventDefault();
+        irA((activo + paso + tabs.length) % tabs.length);
+      });
+    }
+
+    /* --- Los dos modos ------------------------------------------------
+       El mismo HTML se presenta de dos formas, así que la semántica ARIA
+       tiene que seguir a lo que se ve: con pestañas visibles es un
+       tablist; con la grilla completa, seis bloques comunes. Las roles no
+       se pueden condicionar por media query, así que se cambian acá.
+       ---------------------------------------------------------------- */
+
+    const activarTabs = () => {
+      modoTabs = true;
+      if (listaTabs) {
+        listaTabs.setAttribute("role", "tablist");
+        listaTabs.setAttribute("aria-label", "Día de la semana");
+      }
+      tabs.forEach((tab, i) => {
+        tab.setAttribute("role", "tab");
+        tab.setAttribute("aria-controls", cards[i].id);
+      });
+      cards.forEach((card, i) => {
+        card.setAttribute("role", "tabpanel");
+        if (tabs[i]) card.setAttribute("aria-labelledby", tabs[i].id);
+      });
+      mostrarDia(activo, { animar: false });
+    };
+
+    const desactivarTabs = () => {
+      modoTabs = false;
+      if (listaTabs) {
+        listaTabs.removeAttribute("role");
+        listaTabs.removeAttribute("aria-label");
+      }
+      tabs.forEach((tab) => {
+        tab.removeAttribute("role");
+        tab.removeAttribute("aria-controls");
+        tab.removeAttribute("aria-selected");
+        tab.removeAttribute("tabindex");
+      });
+      cards.forEach((card) => {
+        card.removeAttribute("role");
+        card.removeAttribute("aria-labelledby");
+        card.classList.remove("is-oculto");
+      });
+      if (window.gsap) window.gsap.set(grid, { clearProps: "height,opacity,transform" });
+      anunciar();
+    };
+
+    const escritorio = window.matchMedia("(min-width: 1024px)");
+
+    // `null` fuerza que la primera llamada siempre aplique un modo.
+    let modoActual = null;
+
+    const sincronizar = () => {
+      const esEscritorio = escritorio.matches;
+      if (modoActual === esEscritorio) return; // idempotente
+      modoActual = esEscritorio;
+      if (esEscritorio) desactivarTabs();
+      else activarTabs();
+    };
+
+    // Se escuchan las dos señales: el evento `change` de la media query no
+    // siempre llega (no llegó al redimensionar en las pruebas), y quedarse
+    // sólo con él dejaba los roles de tablist puestos en escritorio, donde
+    // los seis días se ven a la vez. La guarda de arriba hace que llamarlo
+    // de más no cueste nada.
+    escritorio.addEventListener("change", sincronizar);
+    window.addEventListener("resize", sincronizar, { passive: true });
+
+    sincronizar();
 
     chips.forEach((chip) => {
       chip.addEventListener("click", () => {
         chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
-        apply(chip.dataset.filter);
+        aplicarFiltro(chip.dataset.filter);
       });
     });
   }

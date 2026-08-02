@@ -727,12 +727,17 @@
             </div>
           </div>
 
+          <!-- Selector de día: sólo por debajo de 1024px. Se genera desde
+               assets/js/main.js a partir del mismo array HORARIOS que la
+               grilla, así no hay dos fuentes de verdad. -->
+          <div id="schedule-tabs" class="day-tabs mt-10 lg:hidden"></div>
+
           <!-- Grilla generada desde assets/js/main.js -->
-          <div
-            id="schedule-grid"
-            class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
-            aria-live="polite"
-          ></div>
+          <div id="schedule-grid" class="mt-4 grid gap-4 lg:mt-14 lg:grid-cols-3 xl:grid-cols-6"></div>
+
+          <!-- Los cambios de día ya los anuncia el patrón de pestañas.
+               Esto es sólo para el resultado de los filtros. -->
+          <p id="schedule-status" class="sr-only" role="status"></p>
 
           <p class="mt-10 text-sm text-ash">
             Los horarios pueden variar en feriados. Confirmá tu cupo por WhatsApp antes de venir.
