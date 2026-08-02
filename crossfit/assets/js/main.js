@@ -576,33 +576,52 @@
     const els = $$("[data-reveal]");
     if (!els.length || !animate || !window.ScrollTrigger) return;
 
-    // Agrupa hermanos para que entren en cascada, no todos a la vez
-    const groups = new Map();
+    // Se agrupan los hermanos sólo para calcular el retardo de la cascada.
+    const grupos = new Map();
     els.forEach((el) => {
       const key = el.parentElement;
-      if (!groups.has(key)) groups.set(key, []);
-      groups.get(key).push(el);
+      if (!grupos.has(key)) grupos.set(key, []);
+      grupos.get(key).push(el);
     });
 
     const offset = { up: { y: 42, x: 0 }, left: { y: 0, x: -42 }, right: { y: 0, x: 42 } };
 
-    groups.forEach((items) => {
-      const dir = items[0].dataset.reveal || "up";
-      const from = offset[dir] || offset.up;
+    grupos.forEach((items) => {
+      items.forEach((el, i) => {
+        // Cada elemento tiene su propio disparador. Si se compartiera uno solo,
+        // al apilarse las columnas en móvil el contenido que queda por encima
+        // del disparador nunca llegaría a revelarse.
+        const from = offset[el.dataset.reveal] || offset.up;
 
-      window.gsap.from(items, {
-        opacity: 0,
-        y: from.y,
-        x: from.x,
-        duration: 0.9,
-        ease: "expo.out",
-        stagger: 0.085,
-        scrollTrigger: {
-          trigger: items[0],
-          start: "top 88%",
-          once: true,
-        },
+        window.gsap.from(el, {
+          opacity: 0,
+          y: from.y,
+          x: from.x,
+          duration: 0.9,
+          ease: "expo.out",
+          delay: Math.min(i, 4) * 0.085,
+          scrollTrigger: {
+            trigger: el,
+            start: "top 92%",
+            once: true,
+          },
+        });
       });
+    });
+
+    // Red de seguridad: si algo quedara sin revelar (por ejemplo si el layout
+    // cambia de tamaño durante la carga), se muestra igual.
+    window.addEventListener("load", () => {
+      window.ScrollTrigger.refresh();
+      setTimeout(() => {
+        els.forEach((el) => {
+          const r = el.getBoundingClientRect();
+          const visible = r.top < window.innerHeight && r.bottom > 0;
+          if (visible && Number(getComputedStyle(el).opacity) === 0) {
+            window.gsap.set(el, { clearProps: "opacity,transform" });
+          }
+        });
+      }, 600);
     });
   }
 

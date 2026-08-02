@@ -21,14 +21,14 @@
       property="og:description"
       content="Salud, entrenamiento híbrido, running y funcional. Gutiérrez Ruiz 1061, Barrio Sur."
     />
-    <!-- TODO: reemplazar por una foto real del box (1200x630 px). Ver assets/img/README.md -->
-    <meta
-      property="og:image"
-      content="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&h=630&q=80"
-    />
+    <meta property="og:image" content="assets/img/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="La comunidad de Satoshi Friends & Fitness en la puerta del box" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
 
     <!-- Fuentes: preconnect + display=swap para evitar FOIT -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,7 +55,10 @@
           "addressCountry": "UY"
         },
         "telephone": "+59892321900",
-        "openingHours": ["Mo-Fr 07:00-13:00", "Mo-Fr 16:00-22:00", "Sa 09:00-12:00"]
+        "openingHours": ["Mo-Fr 07:00-13:00", "Mo-Fr 16:00-22:00", "Sa 09:00-12:00"],
+        "logo": "assets/img/logo.png",
+        "image": "assets/img/og.jpg",
+        "sameAs": ["https://www.instagram.com/satoshi_crossfit/"]
       }
     </script>
   </head>
@@ -108,11 +111,15 @@
       <div id="nav-bar" class="border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-300">
         <nav class="shell flex h-[72px] items-center justify-between" aria-label="Navegación principal">
           <a href="#inicio" class="group flex min-h-11 items-center gap-3" aria-label="Satoshi Friends and Fitness — inicio">
-            <span class="grid size-10 flex-none place-items-center bg-ember-deep">
-              <svg class="size-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
-                <path d="M4 9v6M20 9v6M7 6v12M17 6v12M7 12h10" />
-              </svg>
-            </span>
+            <img
+              src="assets/img/logo.png"
+              alt=""
+              aria-hidden="true"
+              width="230"
+              height="230"
+              fetchpriority="high"
+              class="size-11 flex-none transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+            />
             <span class="leading-none">
               <span class="block font-display text-xl font-extrabold tracking-tight">SATOSHI</span>
               <span class="block text-[0.625rem] font-semibold uppercase tracking-[0.28em] text-mist"
@@ -158,7 +165,7 @@
       aria-label="Menú de navegación"
     >
       <div class="flex h-[72px] items-center justify-between px-5">
-        <span class="font-display text-xl font-extrabold">SATOSHI</span>
+        <img src="assets/img/logo.png" alt="" aria-hidden="true" width="230" height="230" class="size-12" />
         <button
           id="menu-close"
           type="button"
@@ -191,12 +198,12 @@
         <div class="absolute inset-0 -z-10">
           <div class="media absolute inset-0">
             <img
-              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2000&q=80"
+              src="assets/img/hero.webp"
               alt=""
               aria-hidden="true"
               fetchpriority="high"
-              width="2000"
-              height="1333"
+              width="1269"
+              height="781"
               data-parallax="0.16"
               class="scale-110 opacity-45"
             />
@@ -306,13 +313,13 @@
         <div class="shell grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <!-- Imagen -->
           <div class="relative order-2 lg:order-1" data-reveal="left">
-            <div class="media aspect-4/5 rounded-sm">
+            <div class="media aspect-4/3 rounded-sm">
               <img
-                src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80"
-                alt="Atletas entrenando en el box de Satoshi Friends & Fitness"
+                src="assets/img/coach.webp"
+                alt="Un coach de Satoshi corrigiendo la posición de un atleta en las anillas"
                 loading="lazy"
-                width="1200"
-                height="1500"
+                width="732"
+                height="549"
                 data-parallax="0.09"
                 class="scale-110"
               />
@@ -452,13 +459,13 @@
           <div class="mt-16 grid gap-5 lg:grid-cols-3">
             <!-- STANDARD -->
             <article class="prog card group relative flex flex-col overflow-hidden" data-reveal="up">
-              <div class="media aspect-16/10">
+              <div class="media aspect-4/3">
                 <img
-                  src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1000&q=80"
-                  alt="Atleta realizando levantamiento olímpico con barra"
+                  src="assets/img/prog-standard.webp"
+                  alt="Atleta de Satoshi sosteniendo una barra sobre la cabeza en la jaula"
                   loading="lazy"
-                  width="1000"
-                  height="625"
+                  width="455"
+                  height="341"
                   class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/35 to-transparent"></div>
@@ -513,13 +520,13 @@
 
             <!-- FIT -->
             <article class="prog card group relative flex flex-col overflow-hidden" data-reveal="up">
-              <div class="media aspect-16/10">
+              <div class="media aspect-4/3">
                 <img
-                  src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1000&q=80"
-                  alt="Entrenamiento funcional en circuito por estaciones"
+                  src="assets/img/prog-fit.webp"
+                  alt="Circuito por estaciones en Satoshi: sentadilla con kettlebell y trabajo con banda elástica"
                   loading="lazy"
-                  width="1000"
-                  height="625"
+                  width="455"
+                  height="341"
                   class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/35 to-transparent"></div>
@@ -575,13 +582,13 @@
 
             <!-- HÍBRIDA -->
             <article class="prog card group relative flex flex-col overflow-hidden" data-reveal="up">
-              <div class="media aspect-16/10">
+              <div class="media aspect-4/3">
                 <img
-                  src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=1000&q=80"
-                  alt="Corredor entrenando resistencia al aire libre"
+                  src="assets/img/prog-hibrida.webp"
+                  alt="Clase híbrida en Satoshi: wall ball, saltos al cajón y trabajo continuo"
                   loading="lazy"
-                  width="1000"
-                  height="625"
+                  width="456"
+                  height="342"
                   class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/35 to-transparent"></div>
@@ -681,63 +688,59 @@
       </section>
 
       <!-- ================================================================
-           GALERÍA
+           COMUNIDAD
            ================================================================ -->
-      <section class="py-24 lg:py-32">
+      <section id="comunidad" class="py-24 lg:py-32">
         <div class="shell">
-          <div class="max-w-2xl" data-reveal="up">
-            <p class="eyebrow">El box</p>
-            <h2 class="title-lg mt-5 font-black">Así se <span class="text-ember">entrena acá</span></h2>
-          </div>
+          <div class="grid items-center gap-14 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
+            <!-- Foto real de la comunidad, en su proporción nativa -->
+            <figure class="relative" data-reveal="left">
+              <div class="media aspect-[695/428] rounded-sm">
+                <img
+                  src="assets/img/comunidad.webp"
+                  alt="La comunidad de Satoshi Friends &amp; Fitness reunida en la puerta del box, en Gutiérrez Ruiz 1061"
+                  loading="lazy"
+                  width="695"
+                  height="428"
+                />
+              </div>
+              <div
+                class="pointer-events-none absolute -bottom-4 -left-4 hidden h-1/2 w-1/2 border-2 border-ember/70 sm:block"
+                aria-hidden="true"
+              ></div>
+            </figure>
 
-          <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
-            <figure class="media aspect-square rounded-sm sm:col-span-2 sm:row-span-2 sm:aspect-auto sm:min-h-[26rem]" data-reveal="up">
-              <img
-                src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80"
-                alt="Atleta trabajando con cuerda de batalla en el box"
-                loading="lazy"
-                width="1200"
-                height="1200"
-                data-parallax="0.07"
-                class="scale-110"
-              />
-            </figure>
-            <figure class="media aspect-4/3 rounded-sm" data-reveal="up">
-              <img
-                src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=800&q=80"
-                alt="Discos y barras olímpicas del box"
-                loading="lazy"
-                width="800"
-                height="600"
-              />
-            </figure>
-            <figure class="media aspect-4/3 rounded-sm" data-reveal="up">
-              <img
-                src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?auto=format&fit=crop&w=800&q=80"
-                alt="Clase grupal de entrenamiento funcional"
-                loading="lazy"
-                width="800"
-                height="600"
-              />
-            </figure>
-            <figure class="media aspect-4/3 rounded-sm" data-reveal="up">
-              <img
-                src="https://images.unsplash.com/photo-1517344884509-a0c97ec11bcc?auto=format&fit=crop&w=800&q=80"
-                alt="Kettlebells listas para la clase"
-                loading="lazy"
-                width="800"
-                height="600"
-              />
-            </figure>
-            <figure class="media aspect-4/3 rounded-sm" data-reveal="up">
-              <img
-                src="https://images.unsplash.com/photo-1434682881908-b43d0467b798?auto=format&fit=crop&w=800&q=80"
-                alt="Salida de running del grupo"
-                loading="lazy"
-                width="800"
-                height="600"
-              />
-            </figure>
+            <div data-reveal="right">
+              <p class="eyebrow">Friends &amp; Fitness</p>
+              <h2 class="title-lg mt-5 font-black">
+                No es un gimnasio.<br /><span class="text-ember">Es la gente.</span>
+              </h2>
+              <p class="mt-6 text-lg text-mist">
+                El nombre lo dice antes que nosotros: primero amigos, después entrenamiento. Acá
+                nadie es un número de socio ni una tarjeta que pasa por el molinete.
+              </p>
+              <p class="mt-4 text-mist">
+                Vas a saber cómo se llama la persona que entrena al lado tuyo, y ella va a notar
+                si un día faltás. Eso es lo que hace que vuelvas.
+              </p>
+
+              <div class="mt-9 flex flex-wrap gap-3">
+                <a
+                  href="https://www.instagram.com/satoshi_crossfit/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-primary"
+                >
+                  <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none" />
+                  </svg>
+                  Seguinos en Instagram
+                </a>
+                <a href="#contacto" class="btn btn-ghost">Sumate al grupo</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -987,12 +990,12 @@
       <section class="relative overflow-hidden border-t border-line">
         <div class="media absolute inset-0 -z-10">
           <img
-            src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=2000&q=80"
+            src="assets/img/hero.webp"
             alt=""
             aria-hidden="true"
             loading="lazy"
-            width="2000"
-            height="1333"
+            width="1269"
+            height="781"
             data-parallax="0.12"
             class="scale-110 opacity-30"
           />
@@ -1020,22 +1023,33 @@
     <footer class="border-t border-line bg-ink-soft">
       <div class="shell grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
-          <div class="flex items-center gap-3">
-            <span class="grid size-10 flex-none place-items-center bg-ember-deep">
-              <svg class="size-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
-                <path d="M4 9v6M20 9v6M7 6v12M17 6v12M7 12h10" />
-              </svg>
-            </span>
-            <span class="leading-none">
-              <span class="block font-display text-xl font-extrabold">SATOSHI</span>
-              <span class="block text-[0.625rem] font-semibold uppercase tracking-[0.28em] text-mist"
-                >Friends &amp; Fitness</span
-              >
-            </span>
-          </div>
+          <img
+            src="assets/img/logo.png"
+            alt="Satoshi Friends &amp; Fitness"
+            loading="lazy"
+            width="230"
+            height="230"
+            class="size-16"
+          />
           <p class="mt-6 max-w-sm text-sm text-mist">
             Salud, entrenamiento híbrido, running y funcional. Barrio Sur, Montevideo, Uruguay.
           </p>
+
+          <a
+            href="https://www.instagram.com/satoshi_crossfit/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-6 inline-flex min-h-11 items-center gap-2.5 text-sm font-semibold text-cloud transition-colors duration-200 hover:text-ember-bright"
+          >
+            <span class="grid size-11 flex-none place-items-center rounded-sm border border-line text-ember-bright">
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none" />
+              </svg>
+            </span>
+            @satoshi_crossfit
+          </a>
         </div>
 
         <div>

@@ -42,6 +42,12 @@ Antes de subir a producción, compilá el CSS minificado:
 npm run build
 ```
 
+Si cambiás las fotos del gimnasio, regeneralas con:
+
+```bash
+npm run images
+```
+
 > **Importante:** Tailwind lee las clases directamente de `index.html`. Cada vez que
 > agregues o cambies una clase en el HTML tenés que volver a compilar (`npm run dev`
 > lo hace solo; `npm run build` para el archivo final). Si un cambio de clase "no se
@@ -54,7 +60,9 @@ index.html              Todo el contenido de la página
 src/input.css           Fuente de estilos: colores, tipografía, componentes
 assets/css/main.css     CSS compilado (generado — no editar a mano)
 assets/js/main.js       Animaciones, horarios, reseñas, formulario
-assets/img/             Imágenes + guía de reemplazo (ver su README)
+assets/img/             Fotos optimizadas para la web (generadas)
+assets/img/originales/  Fotos originales del gimnasio — nunca se tocan
+scripts/images.mjs      Recorta y optimiza las fotos (npm run images)
 ```
 
 ---
@@ -101,10 +109,11 @@ en el código:
 | **Email real del gimnasio** | `assets/js/main.js` → `CONFIG.email` | Placeholder `hola@satoshifitness.uy` |
 | **Reseñas reales** | `assets/js/main.js` → `RESENAS` | 6 reseñas de ejemplo con nombres ficticios |
 | **Grilla de horarios real** | `assets/js/main.js` → `IMPARES` / `PARES` / `HORARIOS` | Grilla propuesta dentro de las franjas reales (7–13 y 16–22, sábado 9–12) |
-| **Fotos del box** | `index.html` | Fotos de stock de Unsplash — ver `assets/img/README.md` |
-| **Imagen para compartir** | `index.html` → `og:image` | Foto de stock; hace falta una de 1200×630 px |
 | **Dominio** | `index.html` → `<link rel="canonical">` | `https://satoshifitness.uy/` |
-| **Redes sociales** | Footer | Sin enlaces — no me pasaste las cuentas |
+
+Las fotos ya son todas reales del gimnasio (ver `assets/img/README.md`). El Instagram
+`@satoshi_crossfit` sale del cartel de la fachada en la foto grupal; confirmá que sea
+la cuenta vigente antes de publicar.
 
 Las cifras de la sección de estadísticas (3 programaciones, 10 habilidades físicas,
 6 días, 11 clases por día) salen del material que me diste y de la grilla de horarios;
@@ -130,6 +139,15 @@ completa. No hace falta subir `node_modules/`, `src/` ni `package.json`.
 **Referencia visual.** De las tres imágenes que pasaste, la base es la segunda: negro
 profundo, rojo fuego, tipografía condensada, tarjetas de vidrio sobre foto. De la
 primera tomé la barra de contacto superior; de la tercera, la fila de estadísticas.
+
+**Logo.** En el encabezado y el pie va el logo circular real. Lo acompaña un lockup
+tipográfico ("SATOSHI / Friends & Fitness") porque a 44 px las palabras que están
+adentro del círculo no se leen: a ese tamaño el logo funciona como símbolo, no como
+texto. Es la práctica habitual con logos tipo insignia.
+
+**Fotos.** El sitio usa siete fotos reales del gimnasio. La grupal de la fachada tiene
+sección propia ("Friends & Fitness") en lugar de una galería de mosaico, porque es la
+foto que mejor cuenta qué es el lugar y en un mosaico habría quedado recortada.
 
 **Tipografía.** Barlow Condensed para títulos (condensada, atlética, muy legible en
 mayúsculas grandes) y Barlow para texto corrido. Son de la misma familia, así que
@@ -164,8 +182,8 @@ Verificado sobre el sitio ya construido:
 
 - **Contraste:** 0 fallos WCAG AA en todos los textos de la página, calculado con
   composición real de transparencias. Los pares principales van de 5,1:1 a 18,2:1.
-- **Zonas táctiles:** mínimo 44 × 44 px. Los enlaces del pie crecen automáticamente en
-  pantallas táctiles y se mantienen compactos con mouse.
+- **Zonas táctiles:** mínimo 44 × 44 px en todo el sitio, verificado a 375 px.
+- **Peso de las imágenes:** 385 KB entre las nueve, contra los 4 MB de los originales.
 - **Teclado:** foco visible en todo elemento interactivo, enlace "saltar al contenido",
   y el menú móvil atrapa el foco y cierra con `Escape`.
 - **Lectores de pantalla:** jerarquía de encabezados correcta, íconos SVG con
