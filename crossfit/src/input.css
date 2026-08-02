@@ -791,23 +791,6 @@
     );
   }
 
-  /* Sello 聡 del hero.
-     Va dentro de la pila de fondo y antes del scrim, así que el mismo
-     degradado que protege el título lo atenúa: en escritorio queda casi
-     invisible sobre la columna de texto y se lee en la mitad derecha,
-     que es donde no hay nada. La opacidad y el color se tocan acá. */
-  .hero-seal {
-    position: absolute;
-    top: 50%;
-    right: -3%;
-    height: 62vh;
-    width: auto;
-    transform: translateY(-50%);
-    color: var(--color-cloud);
-    opacity: 0.07;
-    pointer-events: none;
-  }
-
   /* Scrim de legibilidad del hero.
      El video de fondo tiene fotogramas claros (un disco metálico entrando en
      cuadro). Sin esta capa, sobre el 1% de píxeles más brillantes el título

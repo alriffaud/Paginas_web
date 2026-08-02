@@ -199,21 +199,6 @@ que es el canal que más van a usar para difundirlo.
 profundo, rojo fuego, tipografía condensada, tarjetas de vidrio sobre foto. De la
 primera tomé la barra de contacto superior; de la tercera, la fila de estadísticas.
 
-**Sello 聡 del encabezado.** El fondo del hero lleva el carácter japonés que está en
-el cartel de la fachada del box, a gran escala y al 7% de opacidad. Reemplaza a un
-"SATOSHI" contorneado que era el recurso genérico que usa todo el mundo: este carácter
-es de ellos y ningún otro gimnasio de Montevideo puede usarlo.
-
-Va como **trazado vectorial y no como texto**, así no depende de que el visitante tenga
-instalada una fuente japonesa. El contorno se extrajo del glifo de Noto Sans JP, que es
-SIL OFL y por lo tanto permite derivar y embeber. La ruta está inline en `index.html`;
-el tamaño, color y opacidad se ajustan en `.hero-seal` dentro de `src/input.css`.
-
-Se ubica en la pila de fondo **antes** del scrim, no después: así el mismo degradado que
-protege la legibilidad del título también lo atenúa. En escritorio eso lo vuelve casi
-invisible sobre la columna de texto y lo deja leerse en la mitad derecha, que es donde
-no hay nada. Está oculto por debajo de 1024px, donde el hero ya es denso.
-
 **Logo.** En el encabezado y el pie va el logo circular real. Lo acompaña un lockup
 tipográfico ("SATOSHI / Friends & Fitness") porque a 44 px las palabras que están
 adentro del círculo no se leen: a ese tamaño el logo funciona como símbolo, no como
@@ -313,9 +298,6 @@ Verificado sobre el sitio ya construido:
   píxeles más claros de cada franja de texto. Peor caso: 4,29:1 en móvil y 4,16:1 en
   escritorio para el título rojo (mínimo 3:1); 7,89:1 y 8,18:1 para el párrafo
   (mínimo 4,5:1).
-- **Sello del hero:** cuesta 0,30 de contraste en el peor punto del título rojo
-  (4,16:1 → 3,86:1, mínimo 3:1 para texto grande), medido fotograma por fotograma del
-  video contra el percentil 99 de luminancia.
 - **Foco por puntero:** en su punto más intenso sube la luminancia del fondo de 0,0025 a
   0,0119. El texto que queda encima baja de 18,2:1 a 15,4:1 (títulos), de 8,4:1 a 7,1:1
   (párrafos) y de 6,5:1 a 5,5:1 (etiquetas). Todo sigue sobre el mínimo AA.
