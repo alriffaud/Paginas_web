@@ -765,6 +765,113 @@
     });
   }
 
+  /* --- Profundidad por puntero -----------------------------------------
+     Al mover el mouse dentro de "Quiénes somos" y "Friends & Fitness"
+     reaccionan tres capas a distinta velocidad: un foco ámbar que sigue al
+     cursor, la foto que se inclina en 3D y el marco de acento que se
+     desplaza. Las tres velocidades distintas son las que crean la
+     sensación de profundidad; una sola capa se vería como un truco.
+
+     No se toca ni la foto (ya tiene parallax de scroll) ni el contenedor
+     que anima al entrar: se transforman elementos que no tienen otro tween
+     encima, para que nada compita.
+     -------------------------------------------------------------------- */
+
+  function initPointerDepth() {
+    // Requiere puntero fino: en pantallas táctiles no hay "mover el mouse"
+    // y el efecto quedaría trabado en el último punto tocado.
+    if (!animate) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    const INCLINACION = 4.5; // grados máximos de giro de la foto
+
+    $$("[data-depth-section]").forEach((seccion) => {
+      const foco = $("[data-depth-glow]", seccion);
+      const foto = $("[data-depth-card]", seccion);
+      const capas = $$("[data-depth-layer]", seccion).map((el) => ({
+        fuerza: parseFloat(el.dataset.depthLayer) || 10,
+        x: window.gsap.quickTo(el, "x", { duration: 0.9, ease: "power3.out" }),
+        y: window.gsap.quickTo(el, "y", { duration: 0.9, ease: "power3.out" }),
+      }));
+
+      if (!foco && !foto && !capas.length) return;
+
+      const focoX = foco && window.gsap.quickTo(foco, "x", { duration: 0.65, ease: "power3.out" });
+      const focoY = foco && window.gsap.quickTo(foco, "y", { duration: 0.65, ease: "power3.out" });
+      const giroX = foto && window.gsap.quickTo(foto, "rotationX", { duration: 0.8, ease: "power3.out" });
+      const giroY = foto && window.gsap.quickTo(foto, "rotationY", { duration: 0.8, ease: "power3.out" });
+
+      if (foco) window.gsap.set(foco, { xPercent: -50, yPercent: -50 });
+
+      let caja = null;
+      let medidaVieja = true;
+
+      // El rect sólo se vuelve a leer cuando hace falta, y siempre justo
+      // antes de escribir con GSAP: así no se intercalan lecturas y
+      // escrituras de layout en el mismo frame.
+      const invalidar = () => {
+        medidaVieja = true;
+      };
+      window.addEventListener("scroll", invalidar, { passive: true });
+      window.addEventListener("resize", invalidar);
+
+      seccion.addEventListener("pointerenter", (e) => {
+        if (e.pointerType !== "mouse") return;
+        caja = seccion.getBoundingClientRect();
+        medidaVieja = false;
+
+        if (foco) {
+          const x = e.clientX - caja.left;
+          const y = e.clientY - caja.top;
+          // El segundo argumento fija el punto de partida: el foco aparece
+          // bajo el cursor en vez de deslizarse desde la esquina.
+          focoX(x, x);
+          focoY(y, y);
+          window.gsap.to(foco, { opacity: 1, duration: 0.45, ease: "power2.out" });
+        }
+      });
+
+      seccion.addEventListener("pointermove", (e) => {
+        if (e.pointerType !== "mouse") return;
+        if (medidaVieja || !caja) {
+          caja = seccion.getBoundingClientRect();
+          medidaVieja = false;
+        }
+
+        const x = e.clientX - caja.left;
+        const y = e.clientY - caja.top;
+        const px = (x / caja.width - 0.5) * 2; // -1 a 1
+        const py = (y / caja.height - 0.5) * 2;
+
+        if (foco) {
+          focoX(x);
+          focoY(y);
+        }
+        if (foto) {
+          giroY(px * INCLINACION);
+          giroX(-py * INCLINACION);
+        }
+        capas.forEach((c) => {
+          c.x(px * c.fuerza);
+          c.y(py * c.fuerza);
+        });
+      });
+
+      seccion.addEventListener("pointerleave", (e) => {
+        if (e.pointerType !== "mouse") return;
+        if (foco) window.gsap.to(foco, { opacity: 0, duration: 0.5, ease: "power2.out" });
+        if (foto) {
+          giroX(0);
+          giroY(0);
+        }
+        capas.forEach((c) => {
+          c.x(0);
+          c.y(0);
+        });
+      });
+    });
+  }
+
   function initMagnetic() {
     // Micro-interacción de puntero: solo en dispositivos con hover real.
     if (!animate || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
@@ -841,6 +948,7 @@
     initReveals();
     initCounters();
     initParallax();
+    initPointerDepth();
     initMagnetic();
 
     if (hasGSAP && window.ScrollTrigger) {

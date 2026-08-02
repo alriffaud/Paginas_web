@@ -338,11 +338,17 @@
       <!-- ================================================================
            NOSOTROS
            ================================================================ -->
-      <section id="nosotros" class="relative py-24 lg:py-32">
-        <div class="shell grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+      <section id="nosotros" class="relative py-24 lg:py-32" data-depth-section>
+        <!-- Foco que sigue al puntero. Se recorta acá y no en la sección
+             para no cortar las animaciones de entrada del contenido. -->
+        <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+          <div class="depth-glow" data-depth-glow></div>
+        </div>
+
+        <div class="shell relative grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <!-- Imagen -->
-          <div class="relative order-2 lg:order-1" data-reveal="left">
-            <div class="media aspect-4/3 rounded-sm">
+          <div class="depth-scene relative order-2 lg:order-1" data-reveal="left">
+            <div class="media depth-card aspect-4/3 rounded-sm" data-depth-card>
               <img
                 src="assets/img/coach.webp"
                 alt="Un coach de Satoshi corrigiendo la posición de un atleta en las anillas"
@@ -357,6 +363,7 @@
             <div
               class="pointer-events-none absolute -bottom-5 -right-5 hidden h-2/3 w-2/3 border-2 border-ember/70 sm:block"
               aria-hidden="true"
+              data-depth-layer="15"
             ></div>
             <div class="glass absolute -bottom-8 left-4 max-w-[15rem] rounded-sm p-5 sm:left-8">
               <p class="font-display text-3xl font-black leading-none text-cloud">100%</p>
@@ -719,12 +726,16 @@
       <!-- ================================================================
            COMUNIDAD
            ================================================================ -->
-      <section id="comunidad" class="py-24 lg:py-32">
-        <div class="shell">
+      <section id="comunidad" class="relative py-24 lg:py-32" data-depth-section>
+        <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+          <div class="depth-glow" data-depth-glow></div>
+        </div>
+
+        <div class="shell relative">
           <div class="grid items-center gap-14 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
             <!-- Foto real de la comunidad, en su proporción nativa -->
-            <figure class="relative" data-reveal="left">
-              <div class="media aspect-[695/428] rounded-sm">
+            <figure class="depth-scene relative" data-reveal="left">
+              <div class="media depth-card aspect-[695/428] rounded-sm" data-depth-card>
                 <img
                   src="assets/img/comunidad.webp"
                   alt="La comunidad de Satoshi Friends &amp; Fitness reunida en la puerta del box, en Gutiérrez Ruiz 1061"
@@ -736,6 +747,7 @@
               <div
                 class="pointer-events-none absolute -bottom-4 -left-4 hidden h-1/2 w-1/2 border-2 border-ember/70 sm:block"
                 aria-hidden="true"
+                data-depth-layer="15"
               ></div>
             </figure>
 

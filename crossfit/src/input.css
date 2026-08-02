@@ -619,6 +619,36 @@
     font-size: 1rem;
   }
 
+  /* --- Profundidad por puntero ----------------------------------------
+     Tres capas que responden al mouse dentro de la sección: un foco que
+     lo sigue, la foto inclinándose en 3D y el marco de acento moviéndose
+     en paralaje. Sólo se activa con puntero fino (ver main.js).
+     -------------------------------------------------------------------- */
+  .depth-scene {
+    perspective: 1100px;
+  }
+
+  .depth-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .depth-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 38rem;
+    height: 38rem;
+    opacity: 0;
+    will-change: transform, opacity;
+    background: radial-gradient(
+      circle closest-side,
+      rgba(226, 59, 38, 0.2) 0%,
+      rgba(226, 59, 38, 0.08) 45%,
+      transparent 100%
+    );
+  }
+
   /* --- Marca de agua / textura --------------------------------------- */
   .grain {
     position: fixed;

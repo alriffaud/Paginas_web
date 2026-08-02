@@ -191,8 +191,24 @@ recalcular el diseño y provocan tirones en celulares de gama media.
 - Contadores numéricos
 - Parallax suave en las fotos — **sólo en escritorio**
 - Botón que sigue al cursor — **sólo con mouse**
+- Profundidad por puntero en "Quiénes somos" y "Friends & Fitness" — **sólo con mouse**
 - Marquee infinito en CSS puro
 - Video de fondo en el encabezado, con control de pausa
+
+**Profundidad por puntero.** Al mover el mouse dentro de "Quiénes somos" y
+"Friends & Fitness" reaccionan tres capas a distinta velocidad: un foco ámbar que sigue
+al cursor, la foto que se inclina hasta 4,5° en 3D, y el marco rojo que se desplaza 15 px
+en paralaje. Las tres velocidades distintas son las que producen la sensación de
+profundidad; con una sola capa se vería como un truco.
+
+Se implementa con `gsap.quickTo`, que reutiliza el mismo tween en vez de crear uno nuevo
+en cada evento del mouse. El efecto se aplica a elementos que no tienen ningún otro tween
+encima — nunca a la foto, que ya lleva parallax de scroll, ni al contenedor que anima al
+entrar — para que no compitan dos animaciones por la misma propiedad.
+
+Sólo se activa con `(hover: hover) and (pointer: fine)`. En pantallas táctiles no existe
+"mover el mouse" y el efecto quedaría trabado en el último punto tocado, así que ni
+siquiera se registran los eventos.
 
 **Sin JavaScript el sitio sigue funcionando.** GSAP se carga desde un CDN; si falla,
 no queda nada oculto, porque las animaciones nunca esconden contenido desde el CSS.
@@ -223,6 +239,9 @@ Verificado sobre el sitio ya construido:
   píxeles más claros de cada franja de texto. Peor caso: 4,29:1 en móvil y 4,16:1 en
   escritorio para el título rojo (mínimo 3:1); 7,89:1 y 8,18:1 para el párrafo
   (mínimo 4,5:1).
+- **Foco por puntero:** en su punto más intenso sube la luminancia del fondo de 0,0025 a
+  0,0119. El texto que queda encima baja de 18,2:1 a 15,4:1 (títulos), de 8,4:1 a 7,1:1
+  (párrafos) y de 6,5:1 a 5,5:1 (etiquetas). Todo sigue sobre el mínimo AA.
 - **Sin scroll horizontal** a 375 px ni en orientación apaisada.
 - **Sin saltos de diseño:** todas las imágenes declaran `width` y `height`; las fuentes
   usan `display=swap`.
