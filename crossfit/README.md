@@ -137,7 +137,7 @@ en el código:
 | **Dominio** | 6 líneas en `index.html`, marcadas `REEMPLAZAR-DOMINIO` | Sin definir — ver sección 4 |
 
 Las fotos ya son todas reales del gimnasio (ver `assets/img/README.md`). El Instagram
-`@satoshi_crossfit` sale del cartel de la fachada en la foto grupal; confirmá que sea
+`@satoshi_friends_fitness` sale del cartel de la fachada en la foto grupal; confirmá que sea
 la cuenta vigente antes de publicar.
 
 Las cifras de la sección de estadísticas (3 programaciones, 10 habilidades físicas,

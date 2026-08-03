@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nombre del proyecto",
+  "compatibility_date": "2026-08-03",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+    "exclude_patterns": [
+      "node_modules/**",
+      "src/**",
+      ".claude/**",
+      ".git/**",
+      "package.json",
+      "package-lock.json"
+    ]
+  }
+}

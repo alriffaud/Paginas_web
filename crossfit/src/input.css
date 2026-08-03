@@ -778,6 +778,95 @@
     );
   }
 
+  /* --- Barra CTA fija (móvil y tablet) ---------------------------------
+     Sustituye al botón flotante de WhatsApp. Arranca oculta y el JS la
+     muestra al salir del hero; sobre el formulario de contacto se retira.
+     -------------------------------------------------------------------- */
+  .cta-bar {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.625rem 1.25rem;
+    padding-bottom: calc(0.625rem + env(safe-area-inset-bottom, 0px));
+    background: rgba(13, 14, 16, 0.94);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-top: 1px solid var(--color-line);
+    transform: translateY(115%);
+    transition: transform 320ms var(--ease-out-expo);
+    will-change: transform;
+  }
+  .cta-bar:not(.is-visible) {
+    pointer-events: none;
+  }
+  .cta-bar.is-visible {
+    transform: translateY(0);
+  }
+
+  .cta-bar-wa {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 52px;
+    min-height: 48px;
+    border-radius: 2px;
+    border: 1px solid var(--color-line);
+    color: var(--color-cloud);
+    transition:
+      border-color 200ms var(--ease-out-quart),
+      color 200ms var(--ease-out-quart),
+      background-color 200ms var(--ease-out-quart);
+  }
+  .cta-bar-wa:hover {
+    border-color: var(--color-ember);
+    color: var(--color-ember-bright);
+    background: color-mix(in oklab, var(--color-ember) 7%, transparent);
+  }
+
+  /* El pie reserva el alto de la barra para no quedar tapado al final. */
+  @media (max-width: 1023.98px) {
+    footer {
+      padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+    }
+  }
+
+  /* --- Botón flotante de WhatsApp (sólo escritorio) --------------------
+     En móvil su lugar lo ocupa la barra CTA. Comparte con ella la clase
+     .is-visible, así el mismo observador maneja los dos.
+     -------------------------------------------------------------------- */
+  .wa-fab {
+    position: fixed;
+    right: 1.25rem;
+    bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    z-index: 40;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 999px;
+    background: var(--color-ember-deep);
+    color: #fff;
+    box-shadow: 0 10px 40px -8px rgba(226, 59, 38, 0.9);
+    transform: translateY(160%);
+    transition: transform 320ms var(--ease-out-expo);
+    will-change: transform;
+  }
+  .wa-fab:not(.is-visible) {
+    pointer-events: none;
+  }
+  .wa-fab.is-visible {
+    transform: translateY(0);
+  }
+  .wa-fab.is-visible:hover {
+    transform: scale(1.1);
+  }
+  .wa-fab.is-visible:active {
+    transform: scale(0.95);
+  }
+
   /* --- Marca de agua / textura --------------------------------------- */
   .grain {
     position: fixed;

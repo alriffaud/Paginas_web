@@ -1168,30 +1168,42 @@
     const year = $("#year");
     if (year) year.textContent = String(new Date().getFullYear());
 
-    // El botón flotante de WhatsApp se retira sobre el hero (que ya tiene su
-    // propio CTA) y sobre el formulario, para no tapar contenido ni campos.
-    const fab = $("#wa-fab");
+    // Los dos elementos flotantes — la barra CTA en móvil y el botón de
+    // WhatsApp en escritorio — se retiran sobre el hero (que ya tiene su
+    // propio CTA) y sobre el formulario, para no tapar campos. Cuál de los
+    // dos se ve lo decide el CSS por breakpoint; acá se manejan igual.
+    const flotantes = [$("#cta-barra"), $("#wa-fab")].filter(Boolean);
     const zonas = [$("#inicio"), $("#contacto")].filter(Boolean);
 
-    if (fab && zonas.length && "IntersectionObserver" in window) {
-      const activas = new Set();
+    if (flotantes.length) {
+      // Los enlaces salen del orden de tabulación mientras están fuera de
+      // pantalla: un elemento enfocable pero invisible es una trampa para
+      // quien navega con teclado.
+      const pintar = (visible) => {
+        flotantes.forEach((el) => {
+          el.classList.toggle("is-visible", visible);
+          el.setAttribute("aria-hidden", String(!visible));
+          const enlaces = el.tagName === "A" ? [el] : $$("a", el);
+          enlaces.forEach((a) => (a.tabIndex = visible ? 0 : -1));
+        });
+      };
 
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) activas.add(entry.target);
-            else activas.delete(entry.target);
-          });
-
-          const ocultar = activas.size > 0;
-          fab.style.transform = ocultar ? "translateY(140%)" : "translateY(0)";
-          fab.style.pointerEvents = ocultar ? "none" : "";
-          fab.setAttribute("aria-hidden", String(ocultar));
-        },
-        { threshold: 0.3 }
-      );
-
-      zonas.forEach((z) => io.observe(z));
+      if (!zonas.length || !("IntersectionObserver" in window)) {
+        pintar(true);
+      } else {
+        const activas = new Set();
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) activas.add(entry.target);
+              else activas.delete(entry.target);
+            });
+            pintar(activas.size === 0);
+          },
+          { threshold: 0.3 }
+        );
+        zonas.forEach((z) => io.observe(z));
+      }
     }
   }
 
