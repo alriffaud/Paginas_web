@@ -30,10 +30,47 @@
   --color-ember-bright: #ff5a45; /* 6.41:1 — labels y microcopy */
   --color-ember-deep: #d22e1e; /* fondo de boton: blanco encima = 5.06:1 */
   --color-ember-dark: #8f1c10;
+  /* Hover del boton primario y seleccion de texto: se mantienen rojos
+     incluso dentro de .tono-calido, porque blanco sobre ambar no llega
+     al minimo de contraste. */
+  --color-ember-hover: #e23b26;
+
+  /* --- Ambar de marca (anillo del logo: hue 41-45) --- */
+  --color-amber: #f5a623;
+  --color-amber-bright: #ffc24d;
+
+  /* --- Superficies calidas (mismo rol que ink/surface, en tono calido) --- */
+  --color-warm-ink: #0d0906;
+  --color-warm-ink-soft: #140e08;
+  --color-warm-surface: #1d150c;
+  --color-warm-surface-2: #271c11;
+  --color-warm-line: #3a2b1b;
 
   /* --- Ritmo de animacion (tokens unicos para todo el sitio) --- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ==========================================================================
+   TONO CALIDO
+   --------------------------------------------------------------------------
+   Redefine los tokens semanticos dentro de un ambito. Todo lo que ya usa
+   var(--color-*) — utilidades de Tailwind incluidas — se adapta solo, sin
+   tocar una sola regla de componente.
+
+   Los botones primarios NO cambian: la accion principal mantiene el mismo
+   rojo en todo el sitio, y ademas texto blanco sobre ambar no llegaria al
+   minimo de contraste.
+   ========================================================================== */
+
+.tono-calido {
+  --color-ink: var(--color-warm-ink);
+  --color-ink-soft: var(--color-warm-ink-soft);
+  --color-surface: var(--color-warm-surface);
+  --color-surface-2: var(--color-warm-surface-2);
+  --color-line: var(--color-warm-line);
+  --color-ember: var(--color-amber);
+  --color-ember-bright: var(--color-amber-bright);
 }
 
 /* ==========================================================================
@@ -88,7 +125,7 @@
   }
 
   ::selection {
-    background: var(--color-ember);
+    background: var(--color-ember-deep);
     color: #fff;
   }
 
@@ -212,7 +249,7 @@
     box-shadow: 0 8px 30px -12px rgba(226, 59, 38, 0.9);
   }
   .btn-primary:hover {
-    background: var(--color-ember);
+    background: var(--color-ember-hover);
     box-shadow: 0 14px 44px -12px rgba(226, 59, 38, 1);
   }
 
@@ -674,7 +711,7 @@
       transform 260ms var(--ease-out-quart);
   }
   .review:hover {
-    border-color: rgba(226, 59, 38, 0.55);
+    border-color: color-mix(in oklab, var(--color-ember) 55%, transparent);
     transform: translateY(-4px);
   }
   .review-stars {
@@ -704,7 +741,7 @@
     height: 2.75rem;
     flex: none;
     border-radius: 999px;
-    background: rgba(226, 59, 38, 0.14);
+    background: color-mix(in oklab, var(--color-ember) 14%, transparent);
     color: var(--color-ember-bright);
     font-family: var(--font-display);
     font-weight: 800;
@@ -735,8 +772,8 @@
     will-change: transform, opacity;
     background: radial-gradient(
       circle closest-side,
-      rgba(226, 59, 38, 0.2) 0%,
-      rgba(226, 59, 38, 0.08) 45%,
+      color-mix(in oklab, var(--color-ember) 20%, transparent) 0%,
+      color-mix(in oklab, var(--color-ember) 8%, transparent) 45%,
       transparent 100%
     );
   }

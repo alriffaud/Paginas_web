@@ -748,7 +748,14 @@
       <!-- ================================================================
            COMUNIDAD
            ================================================================ -->
-      <section id="comunidad" class="relative py-24 lg:py-32" data-depth-section>
+      <!-- .tono-calido redefine los tokens semánticos dentro de la sección:
+           superficies, líneas y acento pasan al ámbar del logo sin tocar
+           una sola regla de componente. Ver src/input.css. -->
+      <section
+        id="comunidad"
+        class="tono-calido relative bg-ink py-24 lg:py-32"
+        data-depth-section
+      >
         <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
           <div class="depth-glow" data-depth-glow></div>
         </div>
@@ -813,7 +820,7 @@
            ================================================================ -->
       <section
         id="resenas"
-        class="relative overflow-hidden border-y border-line bg-ink-soft py-24 lg:py-32"
+        class="tono-calido relative overflow-hidden border-y border-line bg-ink-soft py-24 lg:py-32"
         aria-labelledby="resenas-titulo"
       >
         <div class="shell">
